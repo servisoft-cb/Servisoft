@@ -1,0 +1,293 @@
+object fPessoaRel: TfPessoaRel
+  Left = 5
+  Top = 97
+  Width = 778
+  Height = 456
+  BorderIcons = [biSystemMenu]
+  Caption = 'Relat'#243'rio de Pessoas'
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  OnClose = FormClose
+  PixelsPerInch = 96
+  TextHeight = 13
+  object RLReport1: TRLReport
+    Left = 2
+    Top = 2
+    Width = 794
+    Height = 1123
+    DataSource = DmCons.qsPessoa
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -13
+    Font.Name = 'Arial'
+    Font.Style = []
+    object RLBand1: TRLBand
+      Left = 38
+      Top = 38
+      Width = 718
+      Height = 68
+      BandType = btHeader
+      object RLDraw3: TRLDraw
+        Left = 243
+        Top = 48
+        Width = 85
+        Height = 20
+      end
+      object RLDBText1: TRLDBText
+        Left = 4
+        Top = 5
+        Width = 57
+        Height = 14
+        DataField = 'FANTASIA'
+        DataSource = Dm1.dsEmpresa
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object RLSystemInfo1: TRLSystemInfo
+        Left = 616
+        Top = 5
+        Width = 82
+        Height = 14
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        Info = itPageNumber
+        ParentFont = False
+      end
+      object RLSystemInfo2: TRLSystemInfo
+        Left = 616
+        Top = 21
+        Width = 35
+        Height = 14
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object RLLabel1: TRLLabel
+        Left = 586
+        Top = 5
+        Width = 29
+        Height = 14
+        Caption = 'Pag.:'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object RLLabel2: TRLLabel
+        Left = 586
+        Top = 21
+        Width = 29
+        Height = 14
+        Caption = 'Data:'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object RLLabel3: TRLLabel
+        Left = 278
+        Top = 15
+        Width = 162
+        Height = 19
+        Caption = 'Relat'#243'rio de Clientes'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -16
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object RLDraw1: TRLDraw
+        Left = 0
+        Top = 48
+        Width = 244
+        Height = 20
+      end
+      object RLLabel4: TRLLabel
+        Left = 103
+        Top = 51
+        Width = 38
+        Height = 15
+        Caption = 'Raz'#227'o'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -12
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object RLDraw2: TRLDraw
+        Left = 690
+        Top = 48
+        Width = 27
+        Height = 20
+      end
+      object RLLabel5: TRLLabel
+        Left = 695
+        Top = 51
+        Width = 17
+        Height = 15
+        Caption = 'UF'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -12
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object RLLabel6: TRLLabel
+        Left = 259
+        Top = 51
+        Width = 52
+        Height = 15
+        Caption = 'Telefone'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -12
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object RLDraw4: TRLDraw
+        Left = 327
+        Top = 48
+        Width = 226
+        Height = 20
+      end
+      object RLLabel7: TRLLabel
+        Left = 412
+        Top = 51
+        Width = 57
+        Height = 15
+        Caption = 'Endere'#231'o'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -12
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object RLDraw5: TRLDraw
+        Left = 552
+        Top = 48
+        Width = 139
+        Height = 20
+      end
+      object RLLabel8: TRLLabel
+        Left = 600
+        Top = 51
+        Width = 42
+        Height = 15
+        Caption = 'Cidade'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -12
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+    end
+    object RLBand2: TRLBand
+      Left = 38
+      Top = 106
+      Width = 718
+      Height = 16
+      object RLDBText2: TRLDBText
+        Left = 2
+        Top = 1
+        Width = 240
+        Height = 14
+        AutoSize = False
+        DataField = 'NOME'
+        DataSource = DmCons.qsPessoa
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+      end
+      object RLDBText3: TRLDBText
+        Left = 693
+        Top = 1
+        Width = 22
+        Height = 14
+        Alignment = taCenter
+        AutoSize = False
+        DataField = 'ESTADO'
+        DataSource = DmCons.qsPessoa
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+      end
+      object RLDBText4: TRLDBText
+        Left = 245
+        Top = 1
+        Width = 80
+        Height = 14
+        AutoSize = False
+        DataField = 'FONE'
+        DataSource = DmCons.qsPessoa
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+      end
+      object RLDBText5: TRLDBText
+        Left = 329
+        Top = 1
+        Width = 223
+        Height = 14
+        AutoSize = False
+        DataField = 'ENDERECO'
+        DataSource = DmCons.qsPessoa
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+      end
+      object RLDBText6: TRLDBText
+        Left = 556
+        Top = 1
+        Width = 137
+        Height = 14
+        AutoSize = False
+        DataField = 'NOMECIDADE'
+        DataSource = DmCons.qsPessoa
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+      end
+    end
+  end
+end
