@@ -90,7 +90,7 @@ MaxStackSize=1048576
 ImageBase=4194304
 ExeDescription=
 [Directories]
-OutputDir=C:\Delphi7\Servisoft\EXE
+OutputDir=D:\Fontes\$Servisoft\Servisoft
 UnitOutputDir=C:\Delphi7\Servisoft\DCU
 PackageDLLOutputDir=
 PackageDCPOutputDir=
@@ -135,15 +135,10 @@ ProductName=
 ProductVersion=1.0.0.0
 Comments=
 [Excluded Packages]
-C:\Program Files (x86)\FastReports\FastReport 5\LibD7\dclfrxado7.bpl=FastReport 5.0 ADO Components
-C:\Program Files (x86)\FastReports\FastReport 5\LibD7\dclfrxbde7.bpl=FastReport 5.0 BDE Components
 C:\Program Files (x86)\FastReports\FastReport 5\LibD7\dclfrxcs7.bpl=FastReport 5.0 Client/Server Components
-C:\Program Files (x86)\FastReports\FastReport 5\LibD7\dclfrx7.bpl=FastReport 5.0 Components
-C:\Program Files (x86)\FastReports\FastReport 5\LibD7\dclfrxDB7.bpl=FastReport 5.0 DB Components
-C:\Program Files (x86)\FastReports\FastReport 5\LibD7\dclfrxdbx7.bpl=FastReport 5.0 DBX Components
-C:\Program Files (x86)\FastReports\FastReport 5\LibD7\dclfrxe7.bpl=FastReport 5.0 Exports
-C:\Program Files (x86)\FastReports\FastReport 5\LibD7\dclfrxibx7.bpl=FastReport 5.0 IBX Components
-C:\Program Files (x86)\FastReports\FastReport 5\LibD7\dclfrxtee7.bpl=FastReport 5.0 Tee Components
+C:\Program Files (x86)\FastReports\FastReport 5\LibD7\dclfrxbde7.bpl=FastReport 5.0 BDE Components
+C:\Program Files (x86)\FastReports\FastReport 5\LibD7\dclfsbde7.bpl=FastScript 1.9 BDE Components
+c:\program files (x86)\borland\delphi7\Bin\DBWEBXPRT.BPL=Borland Web Wizard Package
 [HistoryLists\hlUnitAliases]
 Count=1
 Item0=WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;
@@ -152,6 +147,7 @@ Count=2
 Item0=C:\Delphi7\Servisoft\DCU
 Item1=C:\Delphi7\Prontto\DCU
 [HistoryLists\hlOutputDirectorry]
-Count=2
-Item0=C:\Delphi7\Servisoft\EXE
-Item1=C:\Delphi7\Prontto\EXE
+Count=3
+Item0=D:\Fontes\$Servisoft\Servisoft
+Item1=C:\Delphi7\Servisoft\EXE
+Item2=C:\Delphi7\Prontto\EXE

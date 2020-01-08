@@ -28,7 +28,7 @@ object dmRemoto: TdmRemoto
       'Trim Char=False')
     VendorLib = 'gds32.dll'
     Left = 56
-    Top = 48
+    Top = 47
   end
   object sdsPessoa: TSQLDataSet
     NoMetadata = True
@@ -49,7 +49,7 @@ object dmRemoto: TdmRemoto
     Aggregates = <>
     Params = <>
     ProviderName = 'dspPessoa'
-    Left = 200
+    Left = 202
     Top = 48
     object cdsPessoaID: TIntegerField
       FieldName = 'ID'
@@ -351,6 +351,14 @@ object dmRemoto: TdmRemoto
     end
     object cdsPessoaCODVENDEDOR_COB: TIntegerField
       FieldName = 'CODVENDEDOR_COB'
+    end
+    object cdsPessoaEMPRESA_PRINCIPAL: TStringField
+      FieldName = 'EMPRESA_PRINCIPAL'
+      FixedChar = True
+      Size = 1
+    end
+    object cdsPessoaID_EMPRESA_PRINCIPAL: TIntegerField
+      FieldName = 'ID_EMPRESA_PRINCIPAL'
     end
   end
   object dsPessoa: TDataSource

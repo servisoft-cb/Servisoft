@@ -167,7 +167,9 @@ begin
                fDmRemoto.cdsPessoa.FieldByName(fDM1.tPessoa.Fields[x].FieldName).AsVariant := fDM1.tPessoa.Fields[x].Value
            end;
          end;
+        fDmRemoto.GravarRegistro;
       finally
+
          FreeAndNil(fDmRemoto);
       end;
    end;
@@ -189,6 +191,7 @@ end;
 
 procedure Prc_Ler_Pessoa_FB(fDm1: TDm1; Codigo: Integer);
 begin
+
 end;
 
 end.

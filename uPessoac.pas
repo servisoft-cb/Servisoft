@@ -242,6 +242,8 @@ begin
           (fdm1.tPessoaclDtLiberacao.AsDateTime < Date + 7) then
         AFont.Color := clRed;
   end;
+  if Fdm1.tPessoaEMPRESA_PRINCIPAL.AsString = '1' then
+    AFont.Style := [fsBold];
 end;
 
 procedure TfPessoaC.SMDBGrid1TitleClick(Column: TColumn);

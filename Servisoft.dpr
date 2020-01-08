@@ -110,7 +110,8 @@ uses
   uVersao in 'uVersao.pas' {fVersao},
   uDmVersao in 'uDmVersao.pas' {dmVersao: TDataModule},
   uDmRemoto in 'uDmRemoto.pas' {dmRemoto: TDataModule},
-  uIntegracao in 'uIntegracao.pas';
+  uIntegracao in 'uIntegracao.pas',
+  uUtilPadrao in 'uUtilPadrao.pas';
 
 {$R *.res}
 

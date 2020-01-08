@@ -2,7 +2,7 @@ object fPessoa: TfPessoa
   Left = 282
   Top = 118
   Width = 651
-  Height = 500
+  Height = 556
   BorderIcons = [biSystemMenu, biMaximize]
   Caption = 'Cadastro de Pessoas'
   Color = clBtnFace
@@ -20,7 +20,7 @@ object fPessoa: TfPessoa
   TextHeight = 13
   object Panel1: TPanel
     Left = 0
-    Top = 438
+    Top = 494
     Width = 643
     Height = 31
     Align = alBottom
@@ -48,8 +48,8 @@ object fPessoa: TfPessoa
     Left = 0
     Top = 0
     Width = 643
-    Height = 438
-    ActivePage = TabSheet1
+    Height = 494
+    ActivePage = TabSheet6
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -335,6 +335,37 @@ object fPessoa: TfPessoa
         Font.Style = []
         ParentFont = False
       end
+      object Label48: TLabel
+        Left = 436
+        Top = 86
+        Width = 70
+        Height = 13
+        Alignment = taRightJustify
+        Caption = 'Emp. Principal:'
+        FocusControl = DBEdit1
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Label49: TLabel
+        Left = 11
+        Top = 351
+        Width = 87
+        Height = 13
+        Cursor = crHandPoint
+        Alignment = taRightJustify
+        Caption = 'Empresa Principal:'
+        FocusControl = DBEdit6
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        ParentFont = False
+      end
       object DBEdit1: TDBEdit
         Left = 102
         Top = 8
@@ -368,7 +399,7 @@ object fPessoa: TfPessoa
       object DBEdit4: TDBEdit
         Left = 102
         Top = 80
-        Width = 145
+        Width = 141
         Height = 21
         CharCase = ecUpperCase
         DataField = 'DOCUMENTO'
@@ -474,7 +505,7 @@ object fPessoa: TfPessoa
       end
       object GroupBox1: TGroupBox
         Left = 0
-        Top = 353
+        Top = 409
         Width = 635
         Height = 57
         Align = alBottom
@@ -485,7 +516,7 @@ object fPessoa: TfPessoa
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 20
+        TabOrder = 22
         object DBCheckBox1: TDBCheckBox
           Left = 104
           Top = 11
@@ -644,7 +675,7 @@ object fPessoa: TfPessoa
         DataField = 'ID'
         DataSource = Dm1.dsPessoa
         ReadOnly = True
-        TabOrder = 21
+        TabOrder = 23
       end
       object JvDBLookupCombo8: TJvDBLookupCombo
         Left = 102
@@ -681,6 +712,38 @@ object fPessoa: TfPessoa
         TabOrder = 5
         OnExit = DBEdit4Exit
       end
+      object JvDBComboBox4: TJvDBComboBox
+        Left = 512
+        Top = 78
+        Width = 100
+        Height = 21
+        Style = csDropDownList
+        DataField = 'EMPRESA_PRINCIPAL'
+        DataSource = Dm1.dsPessoa
+        EnableValues = True
+        ItemHeight = 13
+        Items.Strings = (
+          'N'#227'o'
+          'Sim')
+        TabOrder = 21
+        Values.Strings = (
+          '0'
+          '1')
+      end
+      object JvDBLookupCombo11: TJvDBLookupCombo
+        Left = 103
+        Top = 344
+        Width = 315
+        Height = 21
+        DropDownCount = 15
+        DropDownWidth = 700
+        DataField = 'ID_EMPRESA_PRINCIPAL'
+        DataSource = Dm1.dsPessoa
+        LookupField = 'ID'
+        LookupDisplay = 'FANTASIA;NOME'
+        LookupSource = Dm1.dsEmpPrincipal
+        TabOrder = 20
+      end
     end
     object TabSheet6: TTabSheet
       Caption = 'Dados finaceiros'
@@ -689,7 +752,7 @@ object fPessoa: TfPessoa
         Left = 0
         Top = 0
         Width = 635
-        Height = 410
+        Height = 466
         Align = alClient
         BevelOuter = bvLowered
         TabOrder = 0
@@ -1211,8 +1274,8 @@ object fPessoa: TfPessoa
       ImageIndex = 5
       object Panel2: TPanel
         Left = 0
-        Top = 372
-        Width = 627
+        Top = 435
+        Width = 635
         Height = 31
         Align = alBottom
         TabOrder = 0
@@ -1238,8 +1301,8 @@ object fPessoa: TfPessoa
       object JvDBGrid1: TJvDBGrid
         Left = 0
         Top = 0
-        Width = 627
-        Height = 372
+        Width = 635
+        Height = 435
         Align = alClient
         DataSource = Dm1.dsTelefone
         ReadOnly = True
@@ -1281,7 +1344,7 @@ object fPessoa: TfPessoa
         Left = 0
         Top = 0
         Width = 635
-        Height = 410
+        Height = 466
         ActivePage = TabSheet10
         Align = alClient
         TabOrder = 0
@@ -1303,9 +1366,9 @@ object fPessoa: TfPessoa
           end
           object DBMemo1: TDBMemo
             Left = 0
-            Top = 24
-            Width = 619
-            Height = 351
+            Top = 31
+            Width = 627
+            Height = 407
             Align = alBottom
             Anchors = [akLeft, akTop, akRight, akBottom]
             DataField = 'OBSERVACAO'
@@ -1908,16 +1971,6 @@ object fPessoa: TfPessoa
         end
       end
     end
-  end
-  object VerificaCGC1: TVerificaCGC
-    Resultado = False
-    Left = 492
-    Top = 224
-  end
-  object VerificaCPF1: TVerificaCPF
-    Resultado = False
-    Left = 460
-    Top = 224
   end
   object UCControls1: TUCControls
     GroupName = 'Pessoas (Financeiro)'

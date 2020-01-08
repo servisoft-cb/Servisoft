@@ -91,6 +91,8 @@ type
     cdsPessoaVERSAO_EXE: TStringField;
     cdsPessoaCODVENDEDOR_COB: TIntegerField;
     SQLQuery1: TSQLQuery;
+    cdsPessoaEMPRESA_PRINCIPAL: TStringField;
+    cdsPessoaID_EMPRESA_PRINCIPAL: TIntegerField;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }

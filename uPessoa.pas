@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, DB, Dialogs, StdCtrls, Mask, DBCtrls, UDm1,
-  Buttons, ExtCtrls, ComCtrls, JvDBComb, dbxpress, VerificaCPF, VerificaCGC, JvToolEdit, JvDBCtrl, Grids, DBGrids, UCBase,
+  Buttons, ExtCtrls, ComCtrls, JvDBComb, dbxpress, JvToolEdit, JvDBCtrl, Grids, DBGrids, UCBase,
   FMTBcd, SqlExpr, DBClient, Provider, rsDBUtils, SMDBGrid, IdBaseComponent, IdCoder, JvLookup, IdCoder3to4, IdCoderMIME,
   StrUtils;
 
@@ -95,8 +95,6 @@ type
     BitBtn8: TBitBtn;
     DBMemo1: TDBMemo;
     Label45: TLabel;
-    VerificaCGC1: TVerificaCGC;
-    VerificaCPF1: TVerificaCPF;
     Label40: TLabel;
     DBEdit39: TDBEdit;
     DBCheckBox5: TDBCheckBox;
@@ -166,6 +164,10 @@ type
     Label47: TLabel;
     JvDBLookupCombo10: TJvDBLookupCombo;
     BitBtn13: TBitBtn;
+    Label48: TLabel;
+    JvDBComboBox4: TJvDBComboBox;
+    Label49: TLabel;
+    JvDBLookupCombo11: TJvDBLookupCombo;
     procedure BitBtn2Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure te(Sender: TObject);
@@ -212,7 +214,8 @@ var
 
 implementation
 
-uses uTelefone, uPessoaServico, uCidade, uCentroCusto, UDmCons, uPessoaHist, uPessoaChaves, uPessoaModulos, uIntegracao;
+uses uTelefone, uPessoaServico, uCidade, uCentroCusto, UDmCons, uPessoaHist, uPessoaChaves, uPessoaModulos, uIntegracao,
+  uUtilPadrao;
 
 {$R *.dfm}
 
@@ -449,7 +452,6 @@ begin
   begin
     vDocCliente := Numeros(DBEdit4.Text);
     if (Length(vDocCliente) <> 11) and (Length(vDocCliente) <> 14) then
-
       ShowMessage('Documento informado está incorreto!')
     else
     begin
@@ -457,23 +459,21 @@ begin
       DBEdit4.Text := vDocCliente;
       if Fdm1.tPessoaPESSOA.AsString = 'F' then
       begin
-        //VerificaCPF1.Entrada := DBEdit4.Text;
-        VerificaCPF1.Entrada := vDocCliente;
-        If not VerificaCPF1.Resultado then
+        if not ValidaCPF(DBEdit4.Text) then
         begin
-          ShowMessage('O CPF está incorreto!');
+          ShowMessage('CPF incorreto!');
           DBEdit4.SetFocus;
-        end
+          DBEdit4.SelectAll;
+        end;
       end
       else
       if Fdm1.tPessoaPESSOA.AsString = 'J' then
       begin
-        //VerificaCGC1.Entrada := DBEdit4.Text;
-        VerificaCGC1.Entrada := vDocCliente;
-        if not VerificaCGC1.Resultado then
+        if not ValidaCNPJ(DBEdit4.Text) then
         begin
-          ShowMessage('O CNPJ está incorreto!');
+          ShowMessage('CNPJ incorreto!');
           DBEdit4.SetFocus;
+          DBEdit4.SelectAll;
         end;
       end;
     end;
@@ -720,6 +720,7 @@ end;
 procedure TfPessoa.BitBtn13Click(Sender: TObject);
 begin
   Prc_Gravar_Pessoa_FB(fdm1,fDm1.tPessoaID.AsInteger);
+  Close;
 end;
 
 end.

@@ -1,8 +1,8 @@
 object Dm1: TDm1
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Left = 348
-  Top = 115
+  Left = 282
+  Top = 35
   Height = 616
   Width = 860
   object Conexao: TSQLConnection
@@ -13,9 +13,7 @@ object Dm1: TDm1
     LoginPrompt = False
     Params.Strings = (
       'DriverName=Interbase'
-      
-        'Database=192.168.0.101:D:\Sistema\$servisoft\Servisoft\Servisoft' +
-        '.fdb'
+      'Database=localhost:D:\Fontes\$Servisoft\Servisoft\Servisoft.FDB'
       'RoleName=RoleName'
       'User_Name=sysdba'
       'Password=masterkey'
@@ -31,18 +29,21 @@ object Dm1: TDm1
     VendorLib = 'gds32.dll'
     BeforeConnect = ConexaoBeforeConnect
     Left = 16
-    Top = 8
+    Top = 9
   end
   object Pessoa: TSQLDataSet
     NoMetadata = True
     GetMetadata = False
     CommandText = 
       'SELECT P.*, C.NOME CIDADE_NOME, CC.NOME NOME_CENTROCUSTO, P.ID P' +
-      'ESSOA_ID,'#13#10'VEN.NOME NOME_VENDEDOR, VC.nome NOME_VENDEDOR_COB'#13#10'FR' +
-      'OM PESSOA P'#13#10'LEFT JOIN CIDADE C ON (P.CIDADE = C.ID)'#13#10'LEFT JOIN ' +
-      'CENTROCUSTO CC ON (P.CODCENTROCUSTO = CC.ID)'#13#10'LEFT JOIN PESSOA V' +
-      'EN ON (P.codvendedor = VEN.id)'#13#10'LEFT JOIN PESSOA VC ON (P.codven' +
-      'dedor_cob = VC.id)'#13#10
+      'ESSOA_ID,'#13#10'VEN.NOME NOME_VENDEDOR, VC.nome NOME_VENDEDOR_COB,'#13#10'P' +
+      'RI.NOME NOME_PRINCIPAL,'#13#10'CASE'#13#10'  when P.empresa_principal = '#39'1'#39' ' +
+      'THEN '#39'SIM'#39#13#10'  else '#39#39#13#10'  end DESC_EMP_PRINCIPAL'#13#10'FROM PESSOA P'#13#10 +
+      'LEFT JOIN CIDADE C ON (P.CIDADE = C.ID)'#13#10'LEFT JOIN CENTROCUSTO C' +
+      'C ON (P.CODCENTROCUSTO = CC.ID)'#13#10'LEFT JOIN PESSOA VEN ON (P.codv' +
+      'endedor = VEN.id)'#13#10'LEFT JOIN PESSOA VC ON (P.codvendedor_cob = V' +
+      'C.id)'#13#10'LEFT JOIN PESSOA PRI ON (P.id_empresa_principal = PRI.id)' +
+      #13#10#13#10
     MaxBlobSize = -1
     Params = <>
     SQLConnection = Conexao
@@ -374,6 +375,25 @@ object Dm1: TDm1
       FieldName = 'NOME_VENDEDOR_COB'
       ProviderFlags = []
       Size = 40
+    end
+    object PessoaEMPRESA_PRINCIPAL: TStringField
+      FieldName = 'EMPRESA_PRINCIPAL'
+      Size = 1
+    end
+    object PessoaID_EMPRESA_PRINCIPAL: TIntegerField
+      FieldName = 'ID_EMPRESA_PRINCIPAL'
+    end
+    object PessoaNOME_PRINCIPAL: TStringField
+      FieldName = 'NOME_PRINCIPAL'
+      ProviderFlags = []
+      Size = 40
+    end
+    object PessoaDESC_EMP_PRINCIPAL: TStringField
+      FieldName = 'DESC_EMP_PRINCIPAL'
+      ProviderFlags = []
+      Required = True
+      FixedChar = True
+      Size = 3
     end
   end
   object PessoaP: TDataSetProvider
@@ -789,6 +809,26 @@ object Dm1: TDm1
         Name = 'NOME_VENDEDOR_COB'
         DataType = ftString
         Size = 40
+      end
+      item
+        Name = 'EMPRESA_PRINCIPAL'
+        DataType = ftString
+        Size = 1
+      end
+      item
+        Name = 'ID_EMPRESA_PRINCIPAL'
+        DataType = ftInteger
+      end
+      item
+        Name = 'NOME_PRINCIPAL'
+        DataType = ftString
+        Size = 40
+      end
+      item
+        Name = 'DESC_EMP_PRINCIPAL'
+        Attributes = [faRequired, faFixed]
+        DataType = ftString
+        Size = 3
       end
       item
         Name = 'sdsPessoaModulos'
@@ -1225,6 +1265,25 @@ object Dm1: TDm1
       FieldName = 'NOME_VENDEDOR_COB'
       ProviderFlags = []
       Size = 40
+    end
+    object tPessoaEMPRESA_PRINCIPAL: TStringField
+      FieldName = 'EMPRESA_PRINCIPAL'
+      Size = 1
+    end
+    object tPessoaID_EMPRESA_PRINCIPAL: TIntegerField
+      FieldName = 'ID_EMPRESA_PRINCIPAL'
+    end
+    object tPessoaNOME_PRINCIPAL: TStringField
+      FieldName = 'NOME_PRINCIPAL'
+      ProviderFlags = []
+      Size = 40
+    end
+    object tPessoaDESC_EMP_PRINCIPAL: TStringField
+      FieldName = 'DESC_EMP_PRINCIPAL'
+      ProviderFlags = []
+      Required = True
+      FixedChar = True
+      Size = 3
     end
   end
   object dsPessoa: TDataSource
@@ -7275,5 +7334,47 @@ object Dm1: TDm1
     DataSet = cdsUCTabUsers
     Left = 303
     Top = 396
+  end
+  object sdsEmpPrincipal: TSQLDataSet
+    NoMetadata = True
+    GetMetadata = False
+    CommandText = 
+      'select p.id, p.nome, p.fantasia'#13#10'from pessoa p'#13#10'where p.empresa_' +
+      'principal = '#39'1'#39
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = Conexao
+    Left = 646
+    Top = 326
+  end
+  object dspEmpPrincipal: TDataSetProvider
+    DataSet = sdsEmpPrincipal
+    OnUpdateError = PessoaPUpdateError
+    Left = 656
+    Top = 326
+  end
+  object cdsEmpPrincipal: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspEmpPrincipal'
+    Left = 670
+    Top = 326
+    object cdsEmpPrincipalID: TIntegerField
+      FieldName = 'ID'
+      Required = True
+    end
+    object cdsEmpPrincipalNOME: TStringField
+      FieldName = 'NOME'
+      Size = 40
+    end
+    object cdsEmpPrincipalFANTASIA: TStringField
+      FieldName = 'FANTASIA'
+      Size = 40
+    end
+  end
+  object dsEmpPrincipal: TDataSource
+    DataSet = cdsEmpPrincipal
+    Left = 687
+    Top = 326
   end
 end
