@@ -28,7 +28,7 @@ object Dm1: TDm1
       'Trim Char=False')
     VendorLib = 'gds32.dll'
     BeforeConnect = ConexaoBeforeConnect
-    Left = 16
+    Left = 17
     Top = 9
   end
   object Pessoa: TSQLDataSet
@@ -37,20 +37,19 @@ object Dm1: TDm1
     CommandText = 
       'SELECT P.*, C.NOME CIDADE_NOME, CC.NOME NOME_CENTROCUSTO, P.ID P' +
       'ESSOA_ID,'#13#10'VEN.NOME NOME_VENDEDOR, VC.nome NOME_VENDEDOR_COB,'#13#10'P' +
-      'RI.NOME NOME_PRINCIPAL,'#13#10'CASE'#13#10'  when P.empresa_principal = '#39'1'#39' ' +
-      'THEN '#39'SIM'#39#13#10'  else '#39#39#13#10'  end DESC_EMP_PRINCIPAL'#13#10'FROM PESSOA P'#13#10 +
-      'LEFT JOIN CIDADE C ON (P.CIDADE = C.ID)'#13#10'LEFT JOIN CENTROCUSTO C' +
-      'C ON (P.CODCENTROCUSTO = CC.ID)'#13#10'LEFT JOIN PESSOA VEN ON (P.codv' +
-      'endedor = VEN.id)'#13#10'LEFT JOIN PESSOA VC ON (P.codvendedor_cob = V' +
-      'C.id)'#13#10'LEFT JOIN PESSOA PRI ON (P.id_empresa_principal = PRI.id)' +
-      #13#10#13#10
+      'RI.NOME NOME_PRINCIPAL'#13#10'FROM PESSOA P'#13#10'LEFT JOIN CIDADE C ON (P.' +
+      'CIDADE = C.ID)'#13#10'LEFT JOIN CENTROCUSTO CC ON (P.CODCENTROCUSTO = ' +
+      'CC.ID)'#13#10'LEFT JOIN PESSOA VEN ON (P.codvendedor = VEN.id)'#13#10'LEFT J' +
+      'OIN PESSOA VC ON (P.codvendedor_cob = VC.id)'#13#10'LEFT JOIN PESSOA P' +
+      'RI ON (P.id_empresa_principal = PRI.id)'#13#10#13#10
     MaxBlobSize = -1
     Params = <>
     SQLConnection = Conexao
-    Left = 48
-    Top = 8
+    Left = 51
+    Top = 7
     object PessoaID: TIntegerField
       FieldName = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
     object PessoaNOME: TStringField
@@ -388,17 +387,11 @@ object Dm1: TDm1
       ProviderFlags = []
       Size = 40
     end
-    object PessoaDESC_EMP_PRINCIPAL: TStringField
-      FieldName = 'DESC_EMP_PRINCIPAL'
-      ProviderFlags = []
-      Required = True
-      FixedChar = True
-      Size = 3
-    end
   end
   object PessoaP: TDataSetProvider
     DataSet = Pessoa
     Options = [poCascadeDeletes, poCascadeUpdates]
+    UpdateMode = upWhereKeyOnly
     OnUpdateError = PessoaPUpdateError
     Left = 60
     Top = 8
@@ -857,6 +850,7 @@ object Dm1: TDm1
     object tPessoaID: TIntegerField
       DisplayWidth = 12
       FieldName = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
     object tPessoaNOME: TStringField
@@ -1278,18 +1272,11 @@ object Dm1: TDm1
       ProviderFlags = []
       Size = 40
     end
-    object tPessoaDESC_EMP_PRINCIPAL: TStringField
-      FieldName = 'DESC_EMP_PRINCIPAL'
-      ProviderFlags = []
-      Required = True
-      FixedChar = True
-      Size = 3
-    end
   end
   object dsPessoa: TDataSource
     DataSet = tPessoa
-    Left = 91
-    Top = 8
+    Left = 90
+    Top = 7
   end
   object qInc: TSQLQuery
     MaxBlobSize = -1

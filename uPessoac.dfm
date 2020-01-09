@@ -268,7 +268,7 @@ object fPessoaC: TfPessoaC
       item
         Alignment = taCenter
         Expanded = False
-        FieldName = 'DESC_EMP_PRINCIPAL'
+        FieldName = 'EMPRESA_PRINCIPAL'
         Title.Alignment = taCenter
         Title.Caption = 'Principal'
         Width = 51
@@ -334,7 +334,6 @@ object fPessoaC: TfPessoaC
         Expanded = False
         FieldName = 'VERSAO_EXE'
         Title.Caption = 'Vers'#227'o EXE'
-        Width = 64
         Visible = True
       end
       item
@@ -342,20 +341,17 @@ object fPessoaC: TfPessoaC
         FieldName = 'PESSOA'
         Title.Alignment = taCenter
         Title.Caption = 'Tipo (F/J)'
-        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'DOCUMENTO'
-        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'ENDERECO'
         Title.Caption = 'Endere'#231'o'
-        Width = 64
         Visible = True
       end
       item
@@ -369,7 +365,6 @@ object fPessoaC: TfPessoaC
         Expanded = False
         FieldName = 'ENDCOMPLEMENTO'
         Title.Caption = 'Compl.'
-        Width = 64
         Visible = True
       end
       item
@@ -377,7 +372,6 @@ object fPessoaC: TfPessoaC
         FieldName = 'CIDADE_NOME'
         Title.Alignment = taCenter
         Title.Caption = 'Cidade'
-        Width = 64
         Visible = True
       end
       item
@@ -385,7 +379,6 @@ object fPessoaC: TfPessoaC
         FieldName = 'NOME_VENDEDOR'
         Title.Alignment = taCenter
         Title.Caption = 'Nome Vendedor'
-        Width = 64
         Visible = True
       end
       item
@@ -393,7 +386,6 @@ object fPessoaC: TfPessoaC
         FieldName = 'NOME_VENDEDOR_COB'
         Title.Alignment = taCenter
         Title.Caption = 'Respons'#225'vel pela cobran'#231'a'
-        Width = 64
         Visible = True
       end>
   end

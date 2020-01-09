@@ -1406,9 +1406,7 @@ type
     tPessoaEMPRESA_PRINCIPAL: TStringField;
     tPessoaID_EMPRESA_PRINCIPAL: TIntegerField;
     PessoaNOME_PRINCIPAL: TStringField;
-    PessoaDESC_EMP_PRINCIPAL: TStringField;
     tPessoaNOME_PRINCIPAL: TStringField;
-    tPessoaDESC_EMP_PRINCIPAL: TStringField;
     procedure tPessoaNewRecord(DataSet: TDataSet);
     procedure tProdutoNewRecord(DataSet: TDataSet);
     procedure tCondPgtoNewRecord(DataSet: TDataSet);
