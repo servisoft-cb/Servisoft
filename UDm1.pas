@@ -1407,6 +1407,16 @@ type
     tPessoaID_EMPRESA_PRINCIPAL: TIntegerField;
     PessoaNOME_PRINCIPAL: TStringField;
     tPessoaNOME_PRINCIPAL: TStringField;
+    sdsSistema: TSQLDataSet;
+    dspSistema: TDataSetProvider;
+    cdsSistema: TClientDataSet;
+    dsSistema: TDataSource;
+    sdsSistemaID: TIntegerField;
+    sdsSistemaNOME: TStringField;
+    sdsSistemaOBS: TStringField;
+    cdsSistemaID: TIntegerField;
+    cdsSistemaNOME: TStringField;
+    cdsSistemaOBS: TStringField;
     procedure tPessoaNewRecord(DataSet: TDataSet);
     procedure tProdutoNewRecord(DataSet: TDataSet);
     procedure tCondPgtoNewRecord(DataSet: TDataSet);

@@ -28,6 +28,7 @@ object Dm1: TDm1
       'Trim Char=False')
     VendorLib = 'gds32.dll'
     BeforeConnect = ConexaoBeforeConnect
+    Connected = True
     Left = 19
     Top = 9
   end
@@ -7363,5 +7364,60 @@ object Dm1: TDm1
     DataSet = cdsEmpPrincipal
     Left = 687
     Top = 326
+  end
+  object sdsSistema: TSQLDataSet
+    NoMetadata = True
+    GetMetadata = False
+    CommandText = 'SELECT *'#13#10'FROM SISTEMA'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = Conexao
+    Left = 668
+    Top = 452
+    object sdsSistemaID: TIntegerField
+      FieldName = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object sdsSistemaNOME: TStringField
+      FieldName = 'NOME'
+      Size = 30
+    end
+    object sdsSistemaOBS: TStringField
+      FieldName = 'OBS'
+      Size = 250
+    end
+  end
+  object dspSistema: TDataSetProvider
+    DataSet = sdsSistema
+    UpdateMode = upWhereKeyOnly
+    OnUpdateError = PessoaPUpdateError
+    Left = 678
+    Top = 452
+  end
+  object cdsSistema: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspSistema'
+    Left = 692
+    Top = 452
+    object cdsSistemaID: TIntegerField
+      FieldName = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object cdsSistemaNOME: TStringField
+      FieldName = 'NOME'
+      Size = 30
+    end
+    object cdsSistemaOBS: TStringField
+      FieldName = 'OBS'
+      Size = 250
+    end
+  end
+  object dsSistema: TDataSource
+    DataSet = cdsSistema
+    Left = 709
+    Top = 452
   end
 end

@@ -1,6 +1,6 @@
 object fUsuario: TfUsuario
-  Left = 246
-  Top = 10
+  Left = 295
+  Top = 58
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Cadastro de Usu'#225'rios'
@@ -21,7 +21,7 @@ object fUsuario: TfUsuario
   TextHeight = 13
   object PageControl1: TPageControl
     Left = 1
-    Top = 1
+    Top = 2
     Width = 458
     Height = 468
     ActivePage = TabSheet2
