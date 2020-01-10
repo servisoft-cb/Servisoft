@@ -154,7 +154,8 @@ begin
          begin
            if (not (fDM1.tPessoa.Fields[x].FieldKind in [fkLookup, fkCalculated])) and
               (Copy(fDM1.tPessoa.Fields[x].FieldName,1,3) <> 'sds') and
-              (fDm1.tPessoa.Fields[x].ProviderFlags = [pfInUpdate,pfInWhere]) then
+              ((fDm1.tPessoa.Fields[x].ProviderFlags = [pfInUpdate,pfInWhere,pfInKey]) or
+              (fDm1.tPessoa.Fields[x].ProviderFlags = [pfInUpdate,pfInWhere])) then
            begin
              if fDM1.tPessoa.Fields[x].DataType = ftBoolean  then
              begin

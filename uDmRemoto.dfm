@@ -27,7 +27,7 @@ object dmRemoto: TdmRemoto
       'Interbase TransIsolation=ReadCommited'
       'Trim Char=False')
     VendorLib = 'gds32.dll'
-    Left = 56
+    Left = 57
     Top = 47
   end
   object sdsPessoa: TSQLDataSet
@@ -39,9 +39,320 @@ object dmRemoto: TdmRemoto
     SQLConnection = scConexao
     Left = 120
     Top = 48
+    object sdsPessoaID: TIntegerField
+      FieldName = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object sdsPessoaNOME: TStringField
+      FieldName = 'NOME'
+      Size = 40
+    end
+    object sdsPessoaFANTASIA: TStringField
+      FieldName = 'FANTASIA'
+      Size = 40
+    end
+    object sdsPessoaPESSOA: TStringField
+      FieldName = 'PESSOA'
+      FixedChar = True
+      Size = 1
+    end
+    object sdsPessoaDOCUMENTO: TStringField
+      FieldName = 'DOCUMENTO'
+      Size = 18
+    end
+    object sdsPessoaENDERECO: TStringField
+      FieldName = 'ENDERECO'
+      Size = 40
+    end
+    object sdsPessoaBAIRRO: TStringField
+      FieldName = 'BAIRRO'
+      Size = 25
+    end
+    object sdsPessoaCEP: TStringField
+      FieldName = 'CEP'
+      Size = 9
+    end
+    object sdsPessoaESTADO: TStringField
+      FieldName = 'ESTADO'
+      Size = 2
+    end
+    object sdsPessoaFONE: TStringField
+      FieldName = 'FONE'
+      Size = 15
+    end
+    object sdsPessoaFAX: TStringField
+      FieldName = 'FAX'
+      Size = 15
+    end
+    object sdsPessoaINSCESTADUAL: TStringField
+      FieldName = 'INSCESTADUAL'
+      Size = 15
+    end
+    object sdsPessoaIDENTIDADE: TStringField
+      FieldName = 'IDENTIDADE'
+      Size = 10
+    end
+    object sdsPessoaESTCIVIL: TStringField
+      FieldName = 'ESTCIVIL'
+      Size = 12
+    end
+    object sdsPessoaPROFISSAO: TStringField
+      FieldName = 'PROFISSAO'
+      Size = 25
+    end
+    object sdsPessoaNACIONALIDADE: TStringField
+      FieldName = 'NACIONALIDADE'
+    end
+    object sdsPessoaDTCADASTRO: TDateField
+      FieldName = 'DTCADASTRO'
+    end
+    object sdsPessoaOBSERVACAO: TMemoField
+      FieldName = 'OBSERVACAO'
+      BlobType = ftMemo
+      Size = 1
+    end
+    object sdsPessoaFORNECEDOR: TStringField
+      FieldName = 'FORNECEDOR'
+      FixedChar = True
+      Size = 1
+    end
+    object sdsPessoaCLIENTE: TStringField
+      FieldName = 'CLIENTE'
+      FixedChar = True
+      Size = 1
+    end
+    object sdsPessoaVENDEDOR: TStringField
+      FieldName = 'VENDEDOR'
+      FixedChar = True
+      Size = 1
+    end
+    object sdsPessoaREFPESSOAL1: TStringField
+      FieldName = 'REFPESSOAL1'
+      Size = 40
+    end
+    object sdsPessoaREFPESSOAL2: TStringField
+      FieldName = 'REFPESSOAL2'
+      Size = 40
+    end
+    object sdsPessoaREFPESSOALEND1: TStringField
+      FieldName = 'REFPESSOALEND1'
+      Size = 40
+    end
+    object sdsPessoaREFPESSOALEND2: TStringField
+      FieldName = 'REFPESSOALEND2'
+      Size = 40
+    end
+    object sdsPessoaREFPESSOALFONE1: TStringField
+      FieldName = 'REFPESSOALFONE1'
+      Size = 15
+    end
+    object sdsPessoaREFPESSOALFONE2: TStringField
+      FieldName = 'REFPESSOALFONE2'
+      Size = 15
+    end
+    object sdsPessoaREFCOMERCIAL1: TStringField
+      FieldName = 'REFCOMERCIAL1'
+      Size = 40
+    end
+    object sdsPessoaREFCOMERCIAL2: TStringField
+      FieldName = 'REFCOMERCIAL2'
+      Size = 40
+    end
+    object sdsPessoaREFCOMERCIALEND1: TStringField
+      FieldName = 'REFCOMERCIALEND1'
+      Size = 40
+    end
+    object sdsPessoaREFCOMERCIALEND2: TStringField
+      FieldName = 'REFCOMERCIALEND2'
+      Size = 40
+    end
+    object sdsPessoaREFCOMERCIALFONE1: TStringField
+      FieldName = 'REFCOMERCIALFONE1'
+      Size = 15
+    end
+    object sdsPessoaREFCOMERCIALFONE2: TStringField
+      FieldName = 'REFCOMERCIALFONE2'
+      Size = 15
+    end
+    object sdsPessoaCIDADE: TIntegerField
+      FieldName = 'CIDADE'
+    end
+    object sdsPessoaTRANSPORTADORA: TStringField
+      FieldName = 'TRANSPORTADORA'
+      FixedChar = True
+      Size = 1
+    end
+    object sdsPessoaPERCCOMISSAO: TFloatField
+      FieldName = 'PERCCOMISSAO'
+    end
+    object sdsPessoaTIPOCOMISSAO: TStringField
+      FieldName = 'TIPOCOMISSAO'
+      FixedChar = True
+      Size = 1
+    end
+    object sdsPessoaSTATUS: TStringField
+      FieldName = 'STATUS'
+      FixedChar = True
+      Size = 1
+    end
+    object sdsPessoaDTCONTRATOINI: TDateField
+      FieldName = 'DTCONTRATOINI'
+    end
+    object sdsPessoaDTCONTRATOFIM: TDateField
+      FieldName = 'DTCONTRATOFIM'
+    end
+    object sdsPessoaCONTRATODEVOLVIDO: TDateField
+      FieldName = 'CONTRATODEVOLVIDO'
+    end
+    object sdsPessoaCOBENDERECO: TStringField
+      FieldName = 'COBENDERECO'
+      Size = 40
+    end
+    object sdsPessoaCOBNUMERO: TIntegerField
+      FieldName = 'COBNUMERO'
+    end
+    object sdsPessoaCOBCOMPLEMENTO: TStringField
+      FieldName = 'COBCOMPLEMENTO'
+      Size = 10
+    end
+    object sdsPessoaCOBBAIRRO: TStringField
+      FieldName = 'COBBAIRRO'
+      Size = 30
+    end
+    object sdsPessoaCOBCIDADE: TIntegerField
+      FieldName = 'COBCIDADE'
+    end
+    object sdsPessoaCOBUF: TStringField
+      FieldName = 'COBUF'
+      Size = 2
+    end
+    object sdsPessoaCOBCONTATO: TStringField
+      FieldName = 'COBCONTATO'
+      Size = 30
+    end
+    object sdsPessoaENDNUMERO: TIntegerField
+      FieldName = 'ENDNUMERO'
+    end
+    object sdsPessoaENDCOMPLEMENTO: TStringField
+      FieldName = 'ENDCOMPLEMENTO'
+      Size = 15
+    end
+    object sdsPessoaIDUSUARIO: TIntegerField
+      FieldName = 'IDUSUARIO'
+    end
+    object sdsPessoaCODBANCO: TIntegerField
+      FieldName = 'CODBANCO'
+    end
+    object sdsPessoaAGENCIA: TStringField
+      FieldName = 'AGENCIA'
+      Size = 5
+    end
+    object sdsPessoaNUMCONTACORRENTE: TStringField
+      FieldName = 'NUMCONTACORRENTE'
+      Size = 15
+    end
+    object sdsPessoaLOGIN: TStringField
+      FieldName = 'LOGIN'
+      Size = 10
+    end
+    object sdsPessoaSENHA: TStringField
+      FieldName = 'SENHA'
+      Size = 10
+    end
+    object sdsPessoaDIAPAGAMENTO: TIntegerField
+      FieldName = 'DIAPAGAMENTO'
+    end
+    object sdsPessoaCODVENDEDOR: TIntegerField
+      FieldName = 'CODVENDEDOR'
+    end
+    object sdsPessoaFORMAPGTO: TIntegerField
+      FieldName = 'FORMAPGTO'
+    end
+    object sdsPessoaEMAIL: TStringField
+      FieldName = 'EMAIL'
+      Size = 50
+    end
+    object sdsPessoaHOMEPAGE: TStringField
+      FieldName = 'HOMEPAGE'
+      Size = 50
+    end
+    object sdsPessoaSELECIONADO: TStringField
+      FieldName = 'SELECIONADO'
+      FixedChar = True
+      Size = 1
+    end
+    object sdsPessoaCONJUGE: TStringField
+      FieldName = 'CONJUGE'
+      Size = 40
+    end
+    object sdsPessoaDTNASCIMENTO: TDateField
+      FieldName = 'DTNASCIMENTO'
+    end
+    object sdsPessoaCEL: TStringField
+      FieldName = 'CEL'
+      Size = 15
+    end
+    object sdsPessoaPLANOSAUDE_ID: TIntegerField
+      FieldName = 'PLANOSAUDE_ID'
+    end
+    object sdsPessoaCOBCEP: TStringField
+      FieldName = 'COBCEP'
+      Size = 10
+    end
+    object sdsPessoaVLRPGTO: TFloatField
+      FieldName = 'VLRPGTO'
+    end
+    object sdsPessoaNUMCARTEIRA: TStringField
+      FieldName = 'NUMCARTEIRA'
+      Size = 3
+    end
+    object sdsPessoaFUNCIONARIO: TStringField
+      FieldName = 'FUNCIONARIO'
+      FixedChar = True
+      Size = 1
+    end
+    object sdsPessoaCODCENTROCUSTO: TIntegerField
+      FieldName = 'CODCENTROCUSTO'
+    end
+    object sdsPessoaCODTIPOCOBRANCA: TIntegerField
+      FieldName = 'CODTIPOCOBRANCA'
+    end
+    object sdsPessoaTIPOSALARIO: TStringField
+      FieldName = 'TIPOSALARIO'
+      FixedChar = True
+      Size = 1
+    end
+    object sdsPessoaVALORSALARIO: TFloatField
+      FieldName = 'VALORSALARIO'
+    end
+    object sdsPessoaRG: TStringField
+      FieldName = 'RG'
+      Size = 10
+    end
+    object sdsPessoaDT_LIBERADO: TStringField
+      FieldName = 'DT_LIBERADO'
+      Size = 25
+    end
+    object sdsPessoaVERSAO_EXE: TStringField
+      FieldName = 'VERSAO_EXE'
+      Size = 15
+    end
+    object sdsPessoaCODVENDEDOR_COB: TIntegerField
+      FieldName = 'CODVENDEDOR_COB'
+    end
+    object sdsPessoaEMPRESA_PRINCIPAL: TStringField
+      FieldName = 'EMPRESA_PRINCIPAL'
+      FixedChar = True
+      Size = 1
+    end
+    object sdsPessoaID_EMPRESA_PRINCIPAL: TIntegerField
+      FieldName = 'ID_EMPRESA_PRINCIPAL'
+    end
   end
   object dspPessoa: TDataSetProvider
     DataSet = sdsPessoa
+    UpdateMode = upWhereKeyOnly
     Left = 160
     Top = 48
   end
@@ -49,10 +360,11 @@ object dmRemoto: TdmRemoto
     Aggregates = <>
     Params = <>
     ProviderName = 'dspPessoa'
-    Left = 202
+    Left = 205
     Top = 48
     object cdsPessoaID: TIntegerField
       FieldName = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
     object cdsPessoaNOME: TStringField

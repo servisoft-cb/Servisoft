@@ -28,7 +28,7 @@ object Dm1: TDm1
       'Trim Char=False')
     VendorLib = 'gds32.dll'
     BeforeConnect = ConexaoBeforeConnect
-    Left = 17
+    Left = 19
     Top = 9
   end
   object Pessoa: TSQLDataSet
@@ -845,7 +845,7 @@ object Dm1: TDm1
     StoreDefs = True
     OnCalcFields = tPessoaCalcFields
     OnNewRecord = tPessoaNewRecord
-    Left = 72
+    Left = 73
     Top = 8
     object tPessoaID: TIntegerField
       DisplayWidth = 12
@@ -1276,7 +1276,7 @@ object Dm1: TDm1
   object dsPessoa: TDataSource
     DataSet = tPessoa
     Left = 90
-    Top = 7
+    Top = 8
   end
   object qInc: TSQLQuery
     MaxBlobSize = -1
