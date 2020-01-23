@@ -4,23 +4,23 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, Dialogs, StdCtrls, DBCtrls, Buttons, Mask,
-  db, ExtCtrls, UDm1, rsDBUtils, JvToolEdit, JvDBCtrl, JvDBComb, RxLookup,
-  NxCollection, Grids, DBGrids, SMDBGrid, ToolEdit;
+  db, ExtCtrls, UDm1, rsDBUtils, JvToolEdit, JvDBCtrl, JvDBComb, 
+  NxCollection, Grids, DBGrids, SMDBGrid, JvLookup;
 
 type
   TfPessoa_Sistema = class(TForm)
     NxPanel1: TNxPanel;
     Label1: TLabel;
-    RxDBLookupCombo1: TRxDBLookupCombo;
     btnConfirmar: TNxButton;
     btnExcluir: TNxButton;
     SMDBGrid1: TSMDBGrid;
     Label2: TLabel;
-    DateEdit1: TDateEdit;
     Label3: TLabel;
-    DateEdit2: TDateEdit;
     btnAlterar: TNxButton;
     btnCancelar: TNxButton;
+    JvDBLookupCombo3: TJvDBLookupCombo;
+    JvDateEdit1: TJvDateEdit;
+    JvDateEdit2: TJvDateEdit;
     procedure FormShow(Sender: TObject);
     procedure btnConfirmarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
@@ -49,6 +49,8 @@ uses uIntegracao;
 procedure TfPessoa_Sistema.FormShow(Sender: TObject);
 begin
   oDBUtils.SetDataSourceProperties(Self, Fdm1);
+  fDm1.cdsSistema.Close;
+  fDm1.cdsSistema.Open;
   fDm1.cdsPessoa_Sistema.Close;
   fDm1.sdsPessoa_Sistema.ParamByName('ID_PESSOA').AsInteger := vID_Pessoa;
   fDm1.cdsPessoa_Sistema.Open;
@@ -56,35 +58,35 @@ end;
 
 procedure TfPessoa_Sistema.btnConfirmarClick(Sender: TObject);
 begin
-  if trim(RxDBLookupCombo1.Text) = '' then
+  if trim(JvDBLookupCombo3.Text) = '' then
   begin
     MessageDlg('*** Sistema não informado!', mtError, [mbOk], 0);
-    RxDBLookupCombo1.SetFocus;
+    JvDBLookupCombo3.SetFocus;
     exit;
   end;
-  if (fDm1.cdsPessoa_Sistema.Locate('ID_SISTEMA',RxDBLookupCombo1.KeyValue,([LocaseInsensitive]))) then
+  if (fDm1.cdsPessoa_Sistema.Locate('ID_SISTEMA',JvDBLookupCombo3.KeyValue,([LocaseInsensitive]))) then
     fDm1.cdsPessoa_Sistema.Edit
   else
   begin
     fDm1.cdsPessoa_Sistema.Insert;
     fDm1.cdsPessoa_SistemaID_PESSOA.AsInteger  := vID_Pessoa;
-    fDm1.cdsPessoa_SistemaID_SISTEMA.AsInteger := RxDBLookupCombo1.KeyValue;
+    fDm1.cdsPessoa_SistemaID_SISTEMA.AsInteger := JvDBLookupCombo3.KeyValue;
   end;
-  if DateEdit1.Date > 10 then
-    fDm1.cdsPessoa_SistemaDTINICIO.AsDateTime := DateEdit1.Date
+  if JvDateEdit1.Date > 10 then
+    fDm1.cdsPessoa_SistemaDTINICIO.AsDateTime := JvDateEdit1.Date
   else
     fDm1.cdsPessoa_SistemaDTINICIO.Clear;
-  if DateEdit2.Date > 10 then
-    fDm1.cdsPessoa_SistemaDTFINAL.AsDateTime := DateEdit2.Date
+  if JvDateEdit2.Date > 10 then
+    fDm1.cdsPessoa_SistemaDTFINAL.AsDateTime := JvDateEdit2.Date
   else
     fDm1.cdsPessoa_SistemaDTFINAL.Clear;
   fDm1.cdsPessoa_Sistema.Post;
   fDm1.cdsPessoa_Sistema.ApplyUpdates(0);
 
-  uIntegracao.Prc_Gravar_Pessoa_Sistema(vID_Pessoa,RxDBLookupCombo1.KeyValue,DateEdit1.Date,DateEdit2.Date);
+  uIntegracao.Prc_Gravar_Pessoa_Sistema(vID_Pessoa,JvDBLookupCombo3.KeyValue,JvDateEdit1.Date,JvDateEdit2.Date);
 
   prc_Limpa_Campos;
-  RxDBLookupCombo1.SetFocus;
+  JvDBLookupCombo3.SetFocus;
 end;
 
 procedure TfPessoa_Sistema.btnExcluirClick(Sender: TObject);
@@ -106,28 +108,28 @@ end;
 procedure TfPessoa_Sistema.btnCancelarClick(Sender: TObject);
 begin
   prc_Limpa_Campos;
-  RxDBLookupCombo1.SetFocus;
+  JvDBLookupCombo3.SetFocus;
 end;
 
 procedure TfPessoa_Sistema.prc_Limpa_Campos;
 begin
-  RxDBLookupCombo1.ClearValue;
-  DateEdit1.Clear;
-  DateEdit2.Clear;
-  RxDBLookupCombo1.ReadOnly := False;
+  JvDBLookupCombo3.ClearValue;
+  JvDateEdit1.Clear;
+  JvDateEdit2.Clear;
+  JvDBLookupCombo3.ReadOnly := False;
 end;
 
 procedure TfPessoa_Sistema.btnAlterarClick(Sender: TObject);
 begin
   if fDm1.cdsPessoa_Sistema.IsEmpty then
     exit;
-  RxDBLookupCombo1.KeyValue := fDm1.cdsPessoa_SistemaID_SISTEMA.AsInteger;
-  RxDBLookupCombo1.ReadOnly := True;
-  if DateEdit1.Date > 10 then
-    DateEdit1.Date := fDm1.cdsPessoa_SistemaDTINICIO.AsDateTime;
-  if DateEdit2.Date > 10 then
-    DateEdit2.Date := fDm1.cdsPessoa_SistemaDTFINAL.AsDateTime;
-  DateEdit1.SetFocus;
+  JvDBLookupCombo3.KeyValue := fDm1.cdsPessoa_SistemaID_SISTEMA.AsInteger;
+  JvDBLookupCombo3.ReadOnly := True;
+  if JvDateEdit1.Date > 10 then
+    JvDateEdit1.Date := fDm1.cdsPessoa_SistemaDTINICIO.AsDateTime;
+  if JvDateEdit2.Date > 10 then
+    JvDateEdit2.Date := fDm1.cdsPessoa_SistemaDTFINAL.AsDateTime;
+  JvDateEdit1.SetFocus;
 end;
 
 procedure TfPessoa_Sistema.FormClose(Sender: TObject;

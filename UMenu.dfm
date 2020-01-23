@@ -410,8 +410,8 @@ object fMenu: TfMenu
       end>
   end
   object MainMenu1: TMainMenu
-    Left = 112
-    Top = 160
+    Left = 115
+    Top = 162
     object Cadastros1: TMenuItem
       Caption = 'Cadastros'
       object Empresa2: TMenuItem
@@ -632,9 +632,6 @@ object fMenu: TfMenu
     end
     object Programas1: TMenuItem
       Caption = 'Programas'
-      object Cadastro3: TMenuItem
-        Caption = 'Cadastro'
-      end
       object Verses1: TMenuItem
         Caption = 'Vers'#245'es'
         OnClick = Verses1Click

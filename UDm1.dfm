@@ -30,6 +30,7 @@ object Dm1: TDm1
       'Trim Char=False')
     VendorLib = 'gds32.dll'
     BeforeConnect = ConexaoBeforeConnect
+    Connected = True
     Left = 19
     Top = 9
   end
@@ -5530,50 +5531,73 @@ object Dm1: TDm1
     Left = 55
     Top = 257
   end
-  object Ususario: TSQLDataSet
+  object sdsUsuario: TSQLDataSet
     NoMetadata = True
     GetMetadata = False
     CommandText = 'SELECT * '#13#10'FROM USUARIO'
     MaxBlobSize = -1
     Params = <>
     SQLConnection = Conexao
-    Left = 88
+    Left = 86
     Top = 257
+    object sdsUsuarioID: TIntegerField
+      FieldName = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object sdsUsuarioNOME: TStringField
+      FieldName = 'NOME'
+      Size = 50
+    end
+    object sdsUsuarioLOGIN: TStringField
+      FieldName = 'LOGIN'
+      Size = 10
+    end
+    object sdsUsuarioSENHA: TStringField
+      FieldName = 'SENHA'
+      Size = 8
+    end
+    object sdsUsuarioNIVEL: TIntegerField
+      FieldName = 'NIVEL'
+    end
   end
-  object pUsuario: TDataSetProvider
-    DataSet = Ususario
+  object dspUsuario: TDataSetProvider
+    DataSet = sdsUsuario
+    UpdateMode = upWhereKeyOnly
     OnUpdateError = PessoaPUpdateError
     Left = 104
     Top = 257
   end
-  object tUsuario: TClientDataSet
+  object cdsUsuario: TClientDataSet
     Aggregates = <>
+    IndexFieldNames = 'ID'
     Params = <>
-    ProviderName = 'pUsuario'
-    Left = 120
-    Top = 257
-    object tUsuarioID: TIntegerField
+    ProviderName = 'dspUsuario'
+    Left = 118
+    Top = 256
+    object cdsUsuarioID: TIntegerField
       FieldName = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
-    object tUsuarioNOME: TStringField
+    object cdsUsuarioNOME: TStringField
       FieldName = 'NOME'
       Size = 50
     end
-    object tUsuarioLOGIN: TStringField
+    object cdsUsuarioLOGIN: TStringField
       FieldName = 'LOGIN'
       Size = 10
     end
-    object tUsuarioSENHA: TStringField
+    object cdsUsuarioSENHA: TStringField
       FieldName = 'SENHA'
       Size = 8
     end
-    object tUsuarioNIVEL: TIntegerField
+    object cdsUsuarioNIVEL: TIntegerField
       FieldName = 'NIVEL'
     end
   end
   object dsUsuario: TDataSource
-    DataSet = tUsuario
+    DataSet = cdsUsuario
     Left = 135
     Top = 257
   end
@@ -7384,7 +7408,7 @@ object Dm1: TDm1
   end
   object dsSistema: TDataSource
     DataSet = cdsSistema
-    Left = 709
+    Left = 711
     Top = 452
   end
   object sdsPessoa_Usuario: TSQLDataSet
@@ -7560,7 +7584,7 @@ object Dm1: TDm1
       'from SISTEMA S'
       'where S.ID = :ID')
     SQLConnection = Conexao
-    Left = 531
+    Left = 533
     Top = 482
     object qSistemaID: TIntegerField
       FieldName = 'ID'
@@ -7569,6 +7593,19 @@ object Dm1: TDm1
     object qSistemaNOME: TStringField
       FieldName = 'NOME'
       Size = 30
+    end
+  end
+  object qMaxUsuario: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      'SELECT max(U.id) ID'
+      'FROM USUARIO U')
+    SQLConnection = Conexao
+    Left = 662
+    Top = 512
+    object qMaxUsuarioID: TIntegerField
+      FieldName = 'ID'
     end
   end
 end

@@ -11,11 +11,15 @@ procedure prc_Ler_Vcto_Site(fDm1: TDm1);
 procedure Prc_Ler_Pessoa_FB(fDm1: TDm1; Codigo: Integer);
 procedure Prc_Excluir_Pessoa_FB(fDm1: TDm1; Codigo: Integer);
 
+procedure Prc_Gravar_Usuario(ID : Integer ; Nome, Login, Senha : String);
+procedure Prc_Excluir_Usuario(ID: Integer);
+
 procedure Prc_Gravar_Pessoa_Usuario(ID_Pessoa, ID_Usuario: Integer);
 procedure Prc_Excluir_Pessoa_Usuario(ID_Pessoa, ID_Usuario: Integer);
 
 procedure Prc_Gravar_Pessoa_Sistema(ID_Pessoa, ID_Sistema: Integer ; DtInicio, DtFinal : TDate);
 procedure Prc_Excluir_Pessoa_Sistema(ID_Pessoa, ID_Sistema: Integer);
+
 
 function ProximaSequencia(NomeTabela: String; Filial: Integer): Integer;
 
@@ -282,6 +286,50 @@ begin
       FreeAndNil(fDmRemoto);
    end;
 end;
+
+procedure Prc_Gravar_Usuario(ID : Integer ; Nome, Login, Senha : String);
+var
+  fDmRemoto: TdmRemoto;
+begin
+   fDmRemoto := TdmRemoto.Create(Nil);
+   try
+     fDmRemoto.prc_Localizar_Usuario(ID);
+     if not fDmRemoto.cdsUsuario.IsEmpty then
+       fDmRemoto.cdsUsuario.Edit
+     else
+     if fDmRemoto.cdsUsuario.IsEmpty then
+     begin
+       fDmRemoto.cdsUsuario.Insert;
+       fDmRemoto.cdsUsuarioID.AsInteger := ID;
+       fDmRemoto.cdsUsuarioSENHA.AsString := Senha;
+     end;
+     fDmRemoto.cdsUsuarioNOME.AsString  := Nome;
+     fDmRemoto.cdsUsuarioLOGIN.AsString := Login;
+     fDmRemoto.cdsUsuario.Post;
+     fDmRemoto.cdsUsuario.ApplyUpdates(0);
+
+   finally
+     FreeAndNil(fDmRemoto);
+   end;
+end;
+
+procedure Prc_Excluir_Usuario(ID: Integer);
+Var
+   fDmRemoto: TDmRemoto;
+begin
+   fDmRemoto := TDmRemoto.Create(Nil);
+   try
+     fDmRemoto.prc_Localizar_Usuario(ID);
+     if not fDmRemoto.cdsUsuario.IsEmpty then
+     begin
+       fDmRemoto.cdsUsuario.Delete;
+       fDmRemoto.cdsUsuario.ApplyUpdates(0);
+     end;
+   finally
+      FreeAndNil(fDmRemoto);
+   end;
+end;
+
 
 end.
 

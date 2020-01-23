@@ -40,17 +40,6 @@ object fPessoa_Usuario: TfPessoa_Usuario
       ParentFont = False
       Transparent = True
     end
-    object RxDBLookupCombo1: TRxDBLookupCombo
-      Left = 9
-      Top = 29
-      Width = 208
-      Height = 21
-      DropDownCount = 8
-      LookupField = 'ID'
-      LookupDisplay = 'LOGIN'
-      LookupSource = Dm1.dsUsuario
-      TabOrder = 0
-    end
     object btnConfirmar: TNxButton
       Left = 220
       Top = 27
@@ -78,6 +67,19 @@ object fPessoa_Usuario: TfPessoa_Usuario
       ParentFont = False
       TabOrder = 2
       OnClick = btnExcluirClick
+    end
+    object JvDBLookupCombo3: TJvDBLookupCombo
+      Left = 5
+      Top = 29
+      Width = 211
+      Height = 21
+      DropDownCount = 8
+      DataField = 'COBCIDADE'
+      DataSource = Dm1.dsPessoa
+      LookupField = 'ID'
+      LookupDisplay = 'LOGIN'
+      LookupSource = Dm1.dsUsuario
+      TabOrder = 0
     end
   end
   object SMDBGrid1: TSMDBGrid

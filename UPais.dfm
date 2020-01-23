@@ -21,11 +21,11 @@ object fPais: TfPais
   PixelsPerInch = 96
   TextHeight = 13
   object PageControl1: TPageControl
-    Left = 0
+    Left = -1
     Top = 0
     Width = 439
     Height = 318
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'Consulta'

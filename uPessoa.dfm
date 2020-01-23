@@ -1323,6 +1323,7 @@ object fPessoa: TfPessoa
           item
             Expanded = False
             FieldName = 'TELEFONE'
+            Width = 64
             Visible = True
           end
           item
@@ -1333,6 +1334,7 @@ object fPessoa: TfPessoa
           item
             Expanded = False
             FieldName = 'EMAIL'
+            Width = 64
             Visible = True
           end>
       end
@@ -1737,6 +1739,7 @@ object fPessoa: TfPessoa
               item
                 Expanded = False
                 FieldName = 'VALOR'
+                Width = 64
                 Visible = True
               end>
           end

@@ -4,17 +4,17 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, Dialogs, StdCtrls, DBCtrls, Buttons, Mask,
-  db, ExtCtrls, UDm1, rsDBUtils, JvToolEdit, JvDBCtrl, JvDBComb, RxLookup,
-  NxCollection, Grids, DBGrids, SMDBGrid;
+  db, ExtCtrls, UDm1, rsDBUtils, JvToolEdit, JvDBCtrl, JvDBComb, 
+  NxCollection, Grids, DBGrids, SMDBGrid, JvLookup;
 
 type
   TfPessoa_Usuario = class(TForm)
     NxPanel1: TNxPanel;
     Label1: TLabel;
-    RxDBLookupCombo1: TRxDBLookupCombo;
     btnConfirmar: TNxButton;
     btnExcluir: TNxButton;
     SMDBGrid1: TSMDBGrid;
+    JvDBLookupCombo3: TJvDBLookupCombo;
     procedure FormShow(Sender: TObject);
     procedure btnConfirmarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
@@ -39,6 +39,8 @@ uses uIntegracao;
 procedure TfPessoa_Usuario.FormShow(Sender: TObject);
 begin
   oDBUtils.SetDataSourceProperties(Self, Fdm1);
+  fDm1.cdsUsuario.Close;
+  fDm1.cdsUsuario.Open;
   fDm1.cdsPessoa_Usuario.Close;
   fDm1.sdsPessoa_Usuario.ParamByName('ID_PESSOA').AsInteger := vID_Pessoa;
   fDm1.cdsPessoa_Usuario.Open;
@@ -46,29 +48,29 @@ end;
 
 procedure TfPessoa_Usuario.btnConfirmarClick(Sender: TObject);
 begin
-  if trim(RxDBLookupCombo1.Text) = '' then
+  if trim(JvDBLookupCombo3.Text) = '' then
   begin
     MessageDlg('*** Usuário não informado!', mtError, [mbOk], 0);
-    RxDBLookupCombo1.SetFocus;
+    JvDBLookupCombo3.SetFocus;
     exit;
   end;
-  if (fDm1.cdsPessoa_Usuario.Locate('ID_USUARIO',RxDBLookupCombo1.KeyValue,([LocaseInsensitive]))) then
+  if (fDm1.cdsPessoa_Usuario.Locate('ID_USUARIO',JvDBLookupCombo3.KeyValue,([LocaseInsensitive]))) then
   begin
     MessageDlg('*** Usuário já informado!', mtInformation, [mbOk], 0);
-    RxDBLookupCombo1.SetFocus;
+    JvDBLookupCombo3.SetFocus;
     exit;
   end;
 
   fDm1.cdsPessoa_Usuario.Insert;
   fDm1.cdsPessoa_UsuarioID_PESSOA.AsInteger  := vID_Pessoa;
-  fDm1.cdsPessoa_UsuarioID_USUARIO.AsInteger := RxDBLookupCombo1.KeyValue;
+  fDm1.cdsPessoa_UsuarioID_USUARIO.AsInteger := JvDBLookupCombo3.KeyValue;
   fDm1.cdsPessoa_Usuario.Post;
   fDm1.cdsPessoa_Usuario.ApplyUpdates(0);
 
-  uIntegracao.Prc_Gravar_Pessoa_Usuario(vID_Pessoa,RxDBLookupCombo1.KeyValue);
+  uIntegracao.Prc_Gravar_Pessoa_Usuario(vID_Pessoa,JvDBLookupCombo3.KeyValue);
 
-  RxDBLookupCombo1.ClearValue;
-  RxDBLookupCombo1.SetFocus;
+  JvDBLookupCombo3.ClearValue;
+  JvDBLookupCombo3.SetFocus;
 end;
 
 procedure TfPessoa_Usuario.btnExcluirClick(Sender: TObject);

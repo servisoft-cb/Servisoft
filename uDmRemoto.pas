@@ -191,6 +191,19 @@ type
     cdsPessoa_SistemaID_SISTEMA: TIntegerField;
     cdsPessoa_SistemaDTINICIO: TDateField;
     cdsPessoa_SistemaDTFINAL: TDateField;
+    sdsUsuario: TSQLDataSet;
+    cdsUsuario: TClientDataSet;
+    dspUsuario: TDataSetProvider;
+    sdsUsuarioID: TIntegerField;
+    sdsUsuarioNOME: TStringField;
+    sdsUsuarioLOGIN: TStringField;
+    sdsUsuarioSENHA: TStringField;
+    sdsUsuarioNIVEL: TIntegerField;
+    cdsUsuarioID: TIntegerField;
+    cdsUsuarioNOME: TStringField;
+    cdsUsuarioLOGIN: TStringField;
+    cdsUsuarioSENHA: TStringField;
+    cdsUsuarioNIVEL: TIntegerField;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
@@ -204,9 +217,10 @@ type
     procedure CancelarRegistro();
     procedure GravarRegistro();
 
+    procedure prc_Localizar_Usuario(ID : Integer);
     procedure prc_Localizar_Pessoa_Usuario(ID_Pessoa,ID_Usuario : Integer);
     procedure prc_Localizar_Pessoa_Sistema(ID_Pessoa,ID_Sistema : Integer);
-    
+
   end;
 
 var
@@ -320,6 +334,13 @@ begin
   sdsPessoa_Sistema.ParamByName('ID_PESSOA').AsInteger  := ID_Pessoa;
   sdsPessoa_Sistema.ParamByName('ID_SISTEMA').AsInteger := ID_Sistema;
   cdsPessoa_Sistema.Open;
+end;
+
+procedure TdmRemoto.prc_Localizar_Usuario(ID: Integer);
+begin
+  cdsUsuario.Close;
+  sdsUsuario.ParamByName('ID').AsInteger  := ID;
+  cdsUsuario.Open;
 end;
 
 end.

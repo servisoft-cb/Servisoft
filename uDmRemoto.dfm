@@ -814,4 +814,73 @@ object dmRemoto: TdmRemoto
     Left = 320
     Top = 255
   end
+  object sdsUsuario: TSQLDataSet
+    NoMetadata = True
+    GetMetadata = False
+    CommandText = 'SELECT * '#13#10'FROM USUARIO'#13#10'WHERE ID = :ID'#13#10
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'ID'
+        ParamType = ptInput
+      end>
+    SQLConnection = scConexao
+    Left = 317
+    Top = 120
+    object sdsUsuarioID: TIntegerField
+      FieldName = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object sdsUsuarioNOME: TStringField
+      FieldName = 'NOME'
+      Size = 50
+    end
+    object sdsUsuarioLOGIN: TStringField
+      FieldName = 'LOGIN'
+      Size = 10
+    end
+    object sdsUsuarioSENHA: TStringField
+      FieldName = 'SENHA'
+      Size = 8
+    end
+    object sdsUsuarioNIVEL: TIntegerField
+      FieldName = 'NIVEL'
+    end
+  end
+  object cdsUsuario: TClientDataSet
+    Aggregates = <>
+    IndexFieldNames = 'ID'
+    Params = <>
+    ProviderName = 'dspUsuario'
+    Left = 391
+    Top = 120
+    object cdsUsuarioID: TIntegerField
+      FieldName = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object cdsUsuarioNOME: TStringField
+      FieldName = 'NOME'
+      Size = 50
+    end
+    object cdsUsuarioLOGIN: TStringField
+      FieldName = 'LOGIN'
+      Size = 10
+    end
+    object cdsUsuarioSENHA: TStringField
+      FieldName = 'SENHA'
+      Size = 8
+    end
+    object cdsUsuarioNIVEL: TIntegerField
+      FieldName = 'NIVEL'
+    end
+  end
+  object dspUsuario: TDataSetProvider
+    DataSet = sdsUsuario
+    UpdateMode = upWhereKeyOnly
+    Left = 353
+    Top = 120
+  end
 end

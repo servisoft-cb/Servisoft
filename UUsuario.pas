@@ -1,68 +1,41 @@
-unit UUsuario;
+unit uUsuario;
 
 interface
 
 uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, Grids, DBGrids, JvDBCtrl, ExtCtrls, ComCtrls, StdCtrls, Buttons,
-  JvLookup, DBCtrls, Mask, DB, VerificaCGC, VerificaCPF, FMTBcd, SqlExpr,
-  Menus, JvxCtrls, JvCombobox, JvToolEdit, JvDBComb, DBXpress, JvEdit,
-  JvGroupBox, UDm1, rsDBUtils;
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, Dialogs, StdCtrls, DBCtrls, Buttons, Mask,
+  db, ExtCtrls, UDm1, rsDBUtils, JvToolEdit, JvDBCtrl, JvDBComb, 
+  NxCollection, Grids, DBGrids, SMDBGrid, JvLookup, JvCurrEdit;
 
 type
   TfUsuario = class(TForm)
-    PageControl1: TPageControl;
-    TabSheet1: TTabSheet;
-    Panel1: TPanel;
-    JvDBGrid1: TJvDBGrid;
-    Panel2: TPanel;
-    TabSheet2: TTabSheet;
-    Panel3: TPanel;
-    BitBtn1: TBitBtn;
-    BitBtn2: TBitBtn;
-    BitBtn3: TBitBtn;
-    BitBtn4: TBitBtn;
-    BitBtn5: TBitBtn;
+    NxPanel1: TNxPanel;
+    Label1: TLabel;
+    btnConfirmar: TNxButton;
+    btnExcluir: TNxButton;
+    SMDBGrid1: TSMDBGrid;
+    Edit1: TEdit;
+    Label2: TLabel;
+    JvxCurrencyEdit1: TJvxCurrencyEdit;
     Label3: TLabel;
-    DBEdit2: TDBEdit;
+    Edit2: TEdit;
     Label4: TLabel;
-    DBEdit3: TDBEdit;
-    Label5: TLabel;
-    DBEdit4: TDBEdit;
-    Label6: TLabel;
-    DBEdit5: TDBEdit;
-    Label7: TLabel;
-    DBEdit6: TDBEdit;
-    Label9: TLabel;
-    DBEdit8: TDBEdit;
-    Label10: TLabel;
-    Label11: TLabel;
-    DBEdit10: TDBEdit;
-    Label12: TLabel;
-    DBEdit11: TDBEdit;
-    Label13: TLabel;
-    DBEdit12: TDBEdit;
-    Label14: TLabel;
-    DBEdit13: TDBEdit;
-    JvDBLookupCombo3: TJvDBLookupCombo;
-    UpDown1: TUpDown;
+    Edit3: TEdit;
+    btnAlterar: TNxButton;
+    btnCancelar: TNxButton;
+    procedure FormShow(Sender: TObject);
+    procedure btnConfirmarClick(Sender: TObject);
+    procedure btnExcluirClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure FormCreate(Sender: TObject);
-    procedure BitBtn1Click(Sender: TObject);
-    procedure BitBtn5Click(Sender: TObject);
-    procedure BitBtn3Click(Sender: TObject);
-    procedure Label10Click(Sender: TObject);
-    procedure BitBtn2Click(Sender: TObject);
-    procedure JvDBGrid1TitleClick(Column: TColumn);
-    procedure BitBtn4Click(Sender: TObject);
-    procedure FormDestroy(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnAlterarClick(Sender: TObject);
   private
     { Private declarations }
-    Fdm1: TDm1;
-
-    procedure Habilita;
+    procedure prc_Limpa_Campos;
+    
   public
     { Public declarations }
+    fDm1: TDm1;
   end;
 
 var
@@ -70,129 +43,108 @@ var
 
 implementation
 
-uses UDmCons, UCidade;
+uses uIntegracao;
 
 {$R *.dfm}
 
-procedure TfUsuario.Habilita;
+procedure TfUsuario.FormShow(Sender: TObject);
 begin
-  Panel3.Enabled  := not Panel3.Enabled;
-  BitBtn1.Enabled := not BitBtn1.Enabled;
-  BitBtn2.Enabled := not BitBtn2.Enabled;
-  BitBtn3.Enabled := not BitBtn3.Enabled;
-  BitBtn4.Enabled := not BitBtn4.Enabled;
-  BitBtn5.Enabled := not BitBtn5.Enabled;
-  TabSheet1.TabVisible := not TabSheet1.TabVisible;
-end;
-
-procedure TfUsuario.FormClose(Sender: TObject; var Action: TCloseAction);
-begin
-  DmCons.qCidade.Close;
-  Fdm1.tUsuario.Close;
-  Action := caFree;
-end;
-
-procedure TfUsuario.FormCreate(Sender: TObject);
-begin
-  Fdm1 := Tdm1.Create(Self);
   oDBUtils.SetDataSourceProperties(Self, Fdm1);
-
-  PageControl1.ActivePage := TabSheet1;
-  Fdm1.tUsuario.Open;
-  DmCons.qCidade.Open;
+  fDm1.cdsUsuario.Close;
+  fDm1.cdsUsuario.Open;
 end;
 
-procedure TfUsuario.BitBtn1Click(Sender: TObject);
-begin
-  PageControl1.ActivePage := TabSheet2;
-  Habilita;
-  DBEdit2.SetFocus;
-  Fdm1.tUsuario.Insert;
-end;
-
-procedure TfUsuario.BitBtn5Click(Sender: TObject);
-begin
-  if DBEdit2.Text = '' then
-  begin
-    ShowMessage('Nome deve ser preenchido!');
-    DBEdit2.SetFocus;
-    Exit;
-  end;
-  if DBEdit3.Text = '' then
-  begin
-    ShowMessage('Usuário deve ser preenchido!');
-    DBEdit3.SetFocus;
-    Exit;
-  end;
-  if DBEdit4.Text = '' then
-  begin
-    ShowMessage('Senha deve ser preenchida!');
-    DBEdit4.SetFocus;
-    Exit;
-  end;
-  if DBEdit13.Text = '' then
-  begin
-    ShowMessage('Nível deve ser preenchido!');
-    DBEdit13.SetFocus;
-    Exit;
-  end;
-  if Fdm1.tUsuario.State in [dsInsert] then
-    Fdm1.tUsuarioID.AsInteger := Fdm1.Incrementa('ID','USUARIO');
-  Fdm1.tUsuario.Post;
-  Fdm1.tUsuario.ApplyUpdates(0);
-  PageControl1.ActivePage := TabSheet1;
-  Habilita;
-end;
-
-procedure TfUsuario.BitBtn3Click(Sender: TObject);
-begin
-  Fdm1.tUsuario.Cancel;
-  Habilita;
-  PageControl1.ActivePage := TabSheet1;
-end;
-
-procedure TfUsuario.Label10Click(Sender: TObject);
-begin
-  DmCons.qCidade.Close;
-  fCidade := TfCidade.Create(Self);
-
-  fCidade.Dm1 := Fdm1;
-  
-  fCidade.ShowModal;
-  DmCons.qCidade.Open;
-end;
-
-procedure TfUsuario.BitBtn2Click(Sender: TObject);
-begin
-  PageControl1.ActivePage := TabSheet2;
-  Habilita;
-  DBEdit2.SetFocus;
-  Fdm1.tUsuario.Edit;
-end;
-
-procedure TfUsuario.JvDBGrid1TitleClick(Column: TColumn);
+procedure TfUsuario.btnConfirmarClick(Sender: TObject);
 var
-  i : Integer;
+  vMSG : String;
+  vIDAux : Integer;
 begin
-  Fdm1.tUsuario.IndexFieldNames := Column.FieldName;
-  Column.Color := clInfoBK;
-  for i := 0 to JvDBGrid1.Columns.Count - 1 do
-    if not (JvDBGrid1.Columns.Items[I] = Column) then
-      JvDBGrid1.Columns.Items[I].Color := clWhite;
+  vMSG := '';
+  if trim(Edit1.Text) = '' then
+    vMSG := vMSG + #13 + '*** Nome não foi informado!';
+  if trim(Edit2.Text) = '' then
+    vMSG := vMSG + #13 + '*** Login não foi informado!';
+  if trim(Edit3.Text) = '' then
+    vMSG := vMSG + #13 + '*** Senha não foi informada!';
+  if trim(vMSG) <> '' then
+  begin
+    MessageDlg(vMSG, mtError, [mbOk], 0);
+    Edit1.SetFocus;
+    exit;
+  end;
+
+  if (fDm1.cdsUsuario.Locate('ID',JvxCurrencyEdit1.AsInteger,([LocaseInsensitive]))) then
+  begin
+    fDm1.cdsUsuario.Edit;
+    vIDAux := fDm1.cdsUsuarioID.AsInteger;
+  end
+  else
+  begin
+    fDm1.qMaxUsuario.Close;
+    fDm1.qMaxUsuario.Open;
+    vIDAux := fDm1.qMaxUsuarioID.AsInteger;
+
+    fDm1.cdsUsuario.Insert;
+    fDm1.cdsUsuarioID.AsInteger   := vIDAux + 1;
+    fDm1.cdsUsuarioSENHA.AsString := Edit3.Text;
+  end;
+  fDm1.cdsUsuarioNOME.AsString  := Edit1.Text;
+  fDm1.cdsUsuarioLOGIN.AsString := Edit2.Text;
+
+  fDm1.cdsUsuario.Post;
+  fDm1.cdsUsuario.ApplyUpdates(0);
+
+  uIntegracao.Prc_Gravar_Usuario(vIDAux,Edit1.Text,Edit2.Text,Edit3.Text);
+
+  prc_Limpa_Campos;
 end;
 
-procedure TfUsuario.BitBtn4Click(Sender: TObject);
+procedure TfUsuario.btnExcluirClick(Sender: TObject);
+var
+  vIDAux : Integer;
 begin
-  if MessageDlg('Deseja realmente excluir este registro?',mtConfirmation,[mbOK,mbNO],0) = mrOK then
+  if fDm1.cdsUsuario.IsEmpty then
+    exit;
+  if MessageDlg('Deseja excluir o usuário: ' + fDm1.cdsUsuarioNOME.AsString,mtconfirmation,[mbOk,mbNo],0) = mrOk then
   begin
-    Fdm1.tUsuario.Delete;
-    Fdm1.tUsuario.ApplyUpdates(0);
+    vIDAux := fDm1.cdsUsuarioID.AsInteger; 
+    fDm1.cdsUsuario.Delete;
+    fDm1.cdsUsuario.ApplyUpdates(0);
+    
+    Prc_Excluir_Usuario(vIDAux);
   end;
 end;
 
-procedure TfUsuario.FormDestroy(Sender: TObject);
+procedure TfUsuario.FormClose(Sender: TObject;
+  var Action: TCloseAction);
 begin
-  FreeAndNil(Fdm1);
+  Action := Cafree;
+end;
+
+procedure TfUsuario.prc_Limpa_Campos;
+begin
+  Edit1.Clear;
+  Edit2.Clear;
+  Edit3.Clear;
+  JvxCurrencyEdit1.Clear;
+  Edit3.ReadOnly := False;
+end;
+
+procedure TfUsuario.btnCancelarClick(Sender: TObject);
+begin
+  prc_Limpa_Campos;
+  Edit1.SetFocus;
+end;
+
+procedure TfUsuario.btnAlterarClick(Sender: TObject);
+begin
+  if fDm1.cdsUsuario.IsEmpty then
+    exit;
+  JvxCurrencyEdit1.AsInteger := fDm1.cdsUsuarioID.AsInteger;
+  Edit1.Text := fDm1.cdsUsuarioNOME.AsString;
+  Edit2.Text := fDm1.cdsUsuarioLOGIN.AsString;
+  Edit3.Text := fDm1.cdsUsuarioSENHA.AsString;
+  Edit3.SetFocus;
 end;
 
 end.

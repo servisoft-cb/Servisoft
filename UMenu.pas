@@ -104,7 +104,6 @@ type
     Image3: TImage;
     Auxiliares1: TMenuItem;
     Programas1: TMenuItem;
-    Cadastro3: TMenuItem;
     Verses1: TMenuItem;
     N1: TMenuItem;
     Logoff1: TMenuItem;
@@ -140,7 +139,6 @@ type
     procedure Sobre1Click(Sender: TObject);
     procedure OrdemdeServio1Click(Sender: TObject);
     procedure Juros1Click(Sender: TObject);
-    procedure Cadastro3Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure ConsultaComisso1Click(Sender: TObject);
     procedure Oramento2Click(Sender: TObject);
@@ -379,12 +377,6 @@ procedure TfMenu.Juros1Click(Sender: TObject);
 begin
   fJuros := TfJuros.Create(Self);
   fJuros.ShowModal;
-end;
-
-procedure TfMenu.Cadastro3Click(Sender: TObject);
-begin
-  fUsuario := TfUsuario.Create(Self);
-  fUsuario.ShowModal;
 end;
 
 procedure TfMenu.FormShow(Sender: TObject);

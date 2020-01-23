@@ -68,20 +68,9 @@ object fPessoa_Sistema: TfPessoa_Sistema
       ParentFont = False
       Transparent = True
     end
-    object RxDBLookupCombo1: TRxDBLookupCombo
-      Left = 2
-      Top = 29
-      Width = 216
-      Height = 21
-      DropDownCount = 8
-      LookupField = 'ID'
-      LookupDisplay = 'NOME'
-      LookupSource = Dm1.dsSistema
-      TabOrder = 0
-    end
     object btnConfirmar: TNxButton
       Left = 421
-      Top = 24
+      Top = 25
       Width = 74
       Caption = 'Confirmar'
       Font.Charset = DEFAULT_CHARSET
@@ -95,7 +84,7 @@ object fPessoa_Sistema: TfPessoa_Sistema
     end
     object btnExcluir: TNxButton
       Left = 647
-      Top = 24
+      Top = 26
       Width = 75
       Caption = 'Excluir'
       Font.Charset = DEFAULT_CHARSET
@@ -107,25 +96,9 @@ object fPessoa_Sistema: TfPessoa_Sistema
       TabOrder = 4
       OnClick = btnExcluirClick
     end
-    object DateEdit1: TDateEdit
-      Left = 218
-      Top = 29
-      Width = 100
-      Height = 21
-      NumGlyphs = 2
-      TabOrder = 1
-    end
-    object DateEdit2: TDateEdit
-      Left = 318
-      Top = 29
-      Width = 100
-      Height = 21
-      NumGlyphs = 2
-      TabOrder = 2
-    end
     object btnAlterar: TNxButton
       Left = 496
-      Top = 24
+      Top = 26
       Width = 75
       Caption = 'Alterar'
       Font.Charset = DEFAULT_CHARSET
@@ -139,7 +112,7 @@ object fPessoa_Sistema: TfPessoa_Sistema
     end
     object btnCancelar: TNxButton
       Left = 571
-      Top = 24
+      Top = 26
       Width = 75
       Caption = 'Cancelar'
       Font.Charset = DEFAULT_CHARSET
@@ -150,6 +123,39 @@ object fPessoa_Sistema: TfPessoa_Sistema
       ParentFont = False
       TabOrder = 6
       OnClick = btnCancelarClick
+    end
+    object JvDBLookupCombo3: TJvDBLookupCombo
+      Left = 5
+      Top = 29
+      Width = 211
+      Height = 21
+      DropDownCount = 8
+      DataField = 'COBCIDADE'
+      DataSource = Dm1.dsPessoa
+      LookupField = 'ID'
+      LookupDisplay = 'NOME'
+      LookupSource = Dm1.dsSistema
+      TabOrder = 0
+    end
+    object JvDateEdit1: TJvDateEdit
+      Left = 217
+      Top = 29
+      Width = 100
+      Height = 21
+      ButtonFlat = False
+      NumGlyphs = 2
+      StartOfWeek = Sun
+      TabOrder = 1
+    end
+    object JvDateEdit2: TJvDateEdit
+      Left = 317
+      Top = 29
+      Width = 100
+      Height = 21
+      ButtonFlat = False
+      NumGlyphs = 2
+      StartOfWeek = Sun
+      TabOrder = 2
     end
   end
   object SMDBGrid1: TSMDBGrid
