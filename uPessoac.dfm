@@ -1,6 +1,6 @@
 object fPessoaC: TfPessoaC
-  Left = 238
-  Top = 178
+  Left = 349
+  Top = 106
   BorderIcons = [biSystemMenu, biMaximize]
   BorderStyle = bsSingle
   Caption = 'Pessoas'
@@ -29,14 +29,8 @@ object fPessoaC: TfPessoaC
     Width = 803
     Height = 33
     Align = alBottom
+    Color = clSilver
     TabOrder = 1
-    object Label2: TLabel
-      Left = 488
-      Top = 8
-      Width = 84
-      Height = 13
-      Caption = 'Total de registros:'
-    end
     object BitBtn1: TBitBtn
       Left = 3
       Top = 4
@@ -82,6 +76,36 @@ object fPessoaC: TfPessoaC
       TabOrder = 4
       OnClick = BitBtn5Click
     end
+    object btnUsuario: TNxButton
+      Left = 464
+      Top = 2
+      Width = 98
+      Height = 26
+      Caption = 'Usu'#225'rios'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Verdana'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 5
+      OnClick = btnUsuarioClick
+    end
+    object btnSistema: TNxButton
+      Left = 562
+      Top = 2
+      Width = 98
+      Height = 26
+      Caption = 'Sistema'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Verdana'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 6
+      OnClick = btnSistemaClick
+    end
   end
   object Panel2: TPanel
     Left = 0
@@ -89,6 +113,7 @@ object fPessoaC: TfPessoaC
     Width = 803
     Height = 73
     Align = alTop
+    Color = clSilver
     TabOrder = 0
     DesignSize = (
       803
@@ -130,6 +155,13 @@ object fPessoaC: TfPessoaC
       Font.Name = 'MS Sans Serif'
       Font.Style = []
       ParentFont = False
+    end
+    object Label2: TLabel
+      Left = 648
+      Top = 24
+      Width = 84
+      Height = 13
+      Caption = 'Total de registros:'
     end
     object JvComboBox1: TJvComboBox
       Left = 94
@@ -232,8 +264,10 @@ object fPessoaC: TfPessoaC
     Width = 803
     Height = 303
     Align = alClient
+    Ctl3D = False
     DataSource = Dm1.dsPessoa
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
+    ParentCtl3D = False
     ReadOnly = True
     TabOrder = 2
     TitleFont.Charset = DEFAULT_CHARSET
@@ -243,7 +277,7 @@ object fPessoaC: TfPessoaC
     TitleFont.Style = []
     OnDblClick = SMDBGrid1DblClick
     OnTitleClick = SMDBGrid1TitleClick
-    Flat = False
+    Flat = True
     BandsFont.Charset = DEFAULT_CHARSET
     BandsFont.Color = clWindowText
     BandsFont.Height = -11
@@ -271,6 +305,7 @@ object fPessoaC: TfPessoaC
         FieldName = 'EMPRESA_PRINCIPAL'
         Title.Alignment = taCenter
         Title.Caption = 'Principal'
+        Title.Color = 8454016
         Width = 51
         Visible = True
       end
@@ -280,6 +315,7 @@ object fPessoaC: TfPessoaC
         FieldName = 'ID'
         Title.Alignment = taCenter
         Title.Caption = 'C'#243'd. Pessoa'
+        Title.Color = 8454016
         Width = 45
         Visible = True
       end
@@ -288,6 +324,7 @@ object fPessoaC: TfPessoaC
         FieldName = 'NOME'
         Title.Alignment = taCenter
         Title.Caption = 'Nome'
+        Title.Color = 8454016
         Width = 285
         Visible = True
       end
@@ -296,6 +333,7 @@ object fPessoaC: TfPessoaC
         FieldName = 'FANTASIA'
         Title.Alignment = taCenter
         Title.Caption = 'Fantasia'
+        Title.Color = 8454016
         Width = 150
         Visible = True
       end
@@ -304,6 +342,7 @@ object fPessoaC: TfPessoaC
         FieldName = 'NOME_CENTROCUSTO'
         Title.Alignment = taCenter
         Title.Caption = 'Centro de Custo'
+        Title.Color = 8454016
         Width = 116
         Visible = True
       end
@@ -312,6 +351,7 @@ object fPessoaC: TfPessoaC
         FieldName = 'FONE'
         Title.Alignment = taCenter
         Title.Caption = 'Fone'
+        Title.Color = 8454016
         Width = 89
         Visible = True
       end
@@ -320,6 +360,7 @@ object fPessoaC: TfPessoaC
         FieldName = 'CEL'
         Title.Alignment = taCenter
         Title.Caption = 'Celular'
+        Title.Color = 8454016
         Width = 100
         Visible = True
       end
@@ -328,12 +369,14 @@ object fPessoaC: TfPessoaC
         FieldName = 'clDtLiberacao'
         Title.Alignment = taCenter
         Title.Caption = 'Liberado at'#233
+        Title.Color = 8454016
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'VERSAO_EXE'
         Title.Caption = 'Vers'#227'o EXE'
+        Title.Color = 8454016
         Visible = True
       end
       item
@@ -341,23 +384,27 @@ object fPessoaC: TfPessoaC
         FieldName = 'PESSOA'
         Title.Alignment = taCenter
         Title.Caption = 'Tipo (F/J)'
+        Title.Color = 8454016
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'DOCUMENTO'
+        Title.Color = 8454016
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'ENDERECO'
         Title.Caption = 'Endere'#231'o'
+        Title.Color = 8454016
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'ENDNUMERO'
         Title.Caption = 'N'#186
+        Title.Color = 8454016
         Width = 30
         Visible = True
       end
@@ -365,6 +412,7 @@ object fPessoaC: TfPessoaC
         Expanded = False
         FieldName = 'ENDCOMPLEMENTO'
         Title.Caption = 'Compl.'
+        Title.Color = 8454016
         Visible = True
       end
       item
@@ -372,6 +420,7 @@ object fPessoaC: TfPessoaC
         FieldName = 'CIDADE_NOME'
         Title.Alignment = taCenter
         Title.Caption = 'Cidade'
+        Title.Color = 8454016
         Visible = True
       end
       item
@@ -379,6 +428,7 @@ object fPessoaC: TfPessoaC
         FieldName = 'NOME_VENDEDOR'
         Title.Alignment = taCenter
         Title.Caption = 'Nome Vendedor'
+        Title.Color = 8454016
         Visible = True
       end
       item
@@ -386,6 +436,7 @@ object fPessoaC: TfPessoaC
         FieldName = 'NOME_VENDEDOR_COB'
         Title.Alignment = taCenter
         Title.Caption = 'Respons'#225'vel pela cobran'#231'a'
+        Title.Color = 8454016
         Visible = True
       end>
   end
@@ -395,7 +446,9 @@ object fPessoaC: TfPessoaC
     Width = 803
     Height = 86
     Align = alBottom
+    Ctl3D = False
     DataSource = Dm1.dsPessoaHist
+    ParentCtl3D = False
     ReadOnly = True
     TabOrder = 3
     TitleFont.Charset = DEFAULT_CHARSET
@@ -408,12 +461,14 @@ object fPessoaC: TfPessoaC
         Expanded = False
         FieldName = 'DATA'
         Title.Caption = 'Data'
+        Title.Color = 16777088
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'HISTORICO'
         Title.Caption = 'Hist'#243'rico'
+        Title.Color = 16777088
         Width = 400
         Visible = True
       end
@@ -421,11 +476,13 @@ object fPessoaC: TfPessoaC
         Expanded = False
         FieldName = 'DATA_AGENDA'
         Title.Caption = 'Agenda'
+        Title.Color = 16777088
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'ID'
+        Title.Color = 16777088
         Visible = True
       end>
   end

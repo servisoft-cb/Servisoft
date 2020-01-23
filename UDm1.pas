@@ -782,19 +782,6 @@ type
     pUsuario: TDataSetProvider;
     tUsuario: TClientDataSet;
     dsUsuario: TDataSource;
-    tUsuarioID: TIntegerField;
-    tUsuarioNOME: TStringField;
-    tUsuarioLOGIN: TStringField;
-    tUsuarioSENHA: TStringField;
-    tUsuarioEMAIL: TStringField;
-    tUsuarioFONE: TStringField;
-    tUsuarioEMPRESA: TStringField;
-    tUsuarioESTADO: TStringField;
-    tUsuarioCIDADE: TStringField;
-    tUsuarioENDERECO: TStringField;
-    tUsuarioCEP: TStringField;
-    tUsuarioPROFISSAO: TStringField;
-    tUsuarioNIVEL: TIntegerField;
     tNiveisNUMCUPOM: TIntegerField;
     tNiveisDTEMISSAO: TDateField;
     tNiveisHREMISSAO: TTimeField;
@@ -1417,6 +1404,40 @@ type
     cdsSistemaID: TIntegerField;
     cdsSistemaNOME: TStringField;
     cdsSistemaOBS: TStringField;
+    sdsPessoa_Usuario: TSQLDataSet;
+    cdsPessoa_Usuario: TClientDataSet;
+    dsPessoa_Usuario: TDataSource;
+    dspPessoa_Usuario: TDataSetProvider;
+    sdsPessoa_UsuarioID_PESSOA: TIntegerField;
+    sdsPessoa_UsuarioID_USUARIO: TIntegerField;
+    cdsPessoa_UsuarioID_PESSOA: TIntegerField;
+    cdsPessoa_UsuarioID_USUARIO: TIntegerField;
+    qUsuario: TSQLQuery;
+    cdsPessoa_UsuarioclUsuario: TStringField;
+    qUsuarioID: TIntegerField;
+    qUsuarioNOME: TStringField;
+    qUsuarioLOGIN: TStringField;
+    tUsuarioID: TIntegerField;
+    tUsuarioNOME: TStringField;
+    tUsuarioLOGIN: TStringField;
+    tUsuarioSENHA: TStringField;
+    tUsuarioNIVEL: TIntegerField;
+    sdsPessoa_Sistema: TSQLDataSet;
+    cdsPessoa_Sistema: TClientDataSet;
+    dsPessoa_Sistema: TDataSource;
+    dspPessoa_Sistema: TDataSetProvider;
+    sdsPessoa_SistemaID_PESSOA: TIntegerField;
+    sdsPessoa_SistemaID_SISTEMA: TIntegerField;
+    sdsPessoa_SistemaDTINICIO: TDateField;
+    sdsPessoa_SistemaDTFINAL: TDateField;
+    cdsPessoa_SistemaID_PESSOA: TIntegerField;
+    cdsPessoa_SistemaID_SISTEMA: TIntegerField;
+    cdsPessoa_SistemaDTINICIO: TDateField;
+    cdsPessoa_SistemaDTFINAL: TDateField;
+    qSistema: TSQLQuery;
+    qSistemaID: TIntegerField;
+    qSistemaNOME: TStringField;
+    cdsPessoa_SistemaclNomeSistema: TStringField;
     procedure tPessoaNewRecord(DataSet: TDataSet);
     procedure tProdutoNewRecord(DataSet: TDataSet);
     procedure tCondPgtoNewRecord(DataSet: TDataSet);
@@ -1456,6 +1477,8 @@ type
     procedure tPessoa_CursoAfterInsert(DataSet: TDataSet);
     procedure cdsPessoaChaveCalcFields(DataSet: TDataSet);
     procedure tPessoaCalcFields(DataSet: TDataSet);
+    procedure cdsPessoa_UsuarioCalcFields(DataSet: TDataSet);
+    procedure cdsPessoa_SistemaCalcFields(DataSet: TDataSet);
   private
     { Private declarations }
     vItemExtra : Integer;
@@ -1998,6 +2021,22 @@ begin
     except
     end;
   end;
+end;
+
+procedure TDm1.cdsPessoa_UsuarioCalcFields(DataSet: TDataSet);
+begin
+  qUsuario.Close;
+  qUsuario.ParamByName('ID').AsInteger := cdsPessoa_UsuarioID_USUARIO.AsInteger;
+  qUsuario.Open;
+  cdsPessoa_UsuarioclUsuario.AsString := qUsuarioLOGIN.AsString;
+end;
+
+procedure TDm1.cdsPessoa_SistemaCalcFields(DataSet: TDataSet);
+begin
+  qSistema.Close;
+  qSistema.ParamByName('ID').AsInteger := cdsPessoa_SistemaID_SISTEMA.AsInteger;
+  qSistema.Open;
+  cdsPessoa_SistemaclNomeSistema.AsString := qSistemaNOME.AsString;
 end;
 
 end.

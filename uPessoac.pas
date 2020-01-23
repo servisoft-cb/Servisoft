@@ -5,7 +5,8 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, Dialogs, StdCtrls, Buttons, ExtCtrls, Grids,
   DBGrids, JvDBCtrl, DBCtrls, UCBase, dbxpress, FMTBcd, DB, SqlExpr, JvCombobox, JvComponent, JvColorBox, SMDBGrid, UDm1,
-  rsDBUtils, JvLookup, IdBaseComponent, IdCoder, IdCoder3to4, IdCoderMIME;// FR_Class, FR_DSet, FR_DBSet;
+  rsDBUtils, JvLookup, IdBaseComponent, IdCoder, IdCoder3to4, IdCoderMIME,
+  NxCollection;// FR_Class, FR_DSet, FR_DBSet;
 
 type
   TfPessoaC = class(TForm)
@@ -19,7 +20,6 @@ type
     JvComboBox1: TJvComboBox;
     Edit1: TEdit;
     BitBtn3: TBitBtn;
-    Label2: TLabel;
     CheckBox1: TCheckBox;
     JvColorSquare4: TJvColorSquare;
     SMDBGrid1: TSMDBGrid;
@@ -34,6 +34,9 @@ type
     BitBtn5: TBitBtn;
     cbBloq: TCheckBox;
     BitBtn6: TBitBtn;
+    btnUsuario: TNxButton;
+    Label2: TLabel;
+    btnSistema: TNxButton;
 //    frReport1: TfrReport;
 //    frDBPessoa: TfrDBDataSet;
     procedure BitBtn1Click(Sender: TObject);
@@ -55,6 +58,8 @@ type
     procedure JvDBLookupCombo1Change(Sender: TObject);
     procedure BitBtn5Click(Sender: TObject);
     procedure BitBtn6Click(Sender: TObject);
+    procedure btnUsuarioClick(Sender: TObject);
+    procedure btnSistemaClick(Sender: TObject);
   private
     { Private declarations }
     Fdm1: TDm1;
@@ -70,7 +75,8 @@ var
 
 implementation
 
-uses uPessoa, UMenu, UDmCons, UPrevPessoa, URelPessoas, uRelEnvelope1, uIntegracao;
+uses uPessoa, UMenu, UDmCons, UPrevPessoa, URelPessoas, uRelEnvelope1, uIntegracao,
+  uPessoa_Sistema, uPessoa_Usuario;
 
 {$R *.dfm}
 
@@ -332,6 +338,30 @@ begin
 //    fdm1.tPessoa.Filter   := 'clDtLiberacao <= ' + vData;
 //    fdm1.tPessoa.Filtered := True;
 //  end;
+end;
+
+procedure TfPessoaC.btnUsuarioClick(Sender: TObject);
+begin
+  if not Fdm1.tPessoa.IsEmpty then
+  begin
+    fPessoa_Usuario := TfPessoa_Usuario.Create(Self);
+    fPessoa_Usuario.fDm1 := fDm1;
+    fPessoa_Usuario.vID_Pessoa := Fdm1.tPessoaID.AsInteger;
+    fPessoa_Usuario.ShowModal;
+    FreeAndNil(fPessoa_Usuario);
+  end;
+end;
+
+procedure TfPessoaC.btnSistemaClick(Sender: TObject);
+begin
+  if not Fdm1.tPessoa.IsEmpty then
+  begin
+    fPessoa_Sistema := TfPessoa_Sistema.Create(Self);
+    fPessoa_Sistema.fDm1 := fDm1;
+    fPessoa_Sistema.vID_Pessoa := Fdm1.tPessoaID.AsInteger;
+    fPessoa_Sistema.ShowModal;
+    FreeAndNil(fPessoa_Sistema);
+  end;
 end;
 
 end.

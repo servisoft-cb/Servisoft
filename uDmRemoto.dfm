@@ -1,10 +1,10 @@
 object dmRemoto: TdmRemoto
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Left = 290
-  Top = 123
-  Height = 316
-  Width = 509
+  Left = 358
+  Top = 131
+  Height = 427
+  Width = 627
   object scConexao: TSQLConnection
     ConnectionName = 'ServisoftRemoto'
     DriverName = 'Interbase'
@@ -27,6 +27,7 @@ object dmRemoto: TdmRemoto
       'Interbase TransIsolation=ReadCommited'
       'Trim Char=False')
     VendorLib = 'gds32.dll'
+    Connected = True
     Left = 57
     Top = 47
   end
@@ -688,5 +689,129 @@ object dmRemoto: TdmRemoto
     SQLConnection = scConexao
     Left = 120
     Top = 104
+  end
+  object sdsPessoa_Usuario: TSQLDataSet
+    NoMetadata = True
+    GetMetadata = False
+    CommandText = 
+      'SELECT * '#13#10'FROM PESSOA_USUARIO'#13#10'WHERE ID_PESSOA = :ID_PESSOA'#13#10'  ' +
+      ' AND ID_USUARIO = :ID_USUARIO'#13#10#13#10
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'ID_PESSOA'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'ID_USUARIO'
+        ParamType = ptInput
+      end>
+    SQLConnection = scConexao
+    Left = 287
+    Top = 198
+    object sdsPessoa_UsuarioID_PESSOA: TIntegerField
+      FieldName = 'ID_PESSOA'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object sdsPessoa_UsuarioID_USUARIO: TIntegerField
+      FieldName = 'ID_USUARIO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+  end
+  object cdsPessoa_Usuario: TClientDataSet
+    Aggregates = <>
+    IndexFieldNames = 'ID_PESSOA;ID_USUARIO'
+    Params = <>
+    ProviderName = 'dspPessoa_Usuario'
+    Left = 352
+    Top = 198
+    object cdsPessoa_UsuarioID_PESSOA: TIntegerField
+      FieldName = 'ID_PESSOA'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object cdsPessoa_UsuarioID_USUARIO: TIntegerField
+      FieldName = 'ID_USUARIO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+  end
+  object dspPessoa_Usuario: TDataSetProvider
+    DataSet = sdsPessoa_Usuario
+    UpdateMode = upWhereKeyOnly
+    Left = 319
+    Top = 198
+  end
+  object sdsPessoa_Sistema: TSQLDataSet
+    NoMetadata = True
+    GetMetadata = False
+    CommandText = 
+      'SELECT * '#13#10'FROM PESSOA_SISTEMA'#13#10'WHERE ID_PESSOA = :ID_PESSOA'#13#10'  ' +
+      ' AND ID_SISTEMA = :ID_SISTEMA'#13#10
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'ID_PESSOA'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'ID_SISTEMA'
+        ParamType = ptInput
+      end>
+    SQLConnection = scConexao
+    Left = 288
+    Top = 254
+    object sdsPessoa_SistemaID_PESSOA: TIntegerField
+      FieldName = 'ID_PESSOA'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object sdsPessoa_SistemaID_SISTEMA: TIntegerField
+      FieldName = 'ID_SISTEMA'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object sdsPessoa_SistemaDTINICIO: TDateField
+      FieldName = 'DTINICIO'
+    end
+    object sdsPessoa_SistemaDTFINAL: TDateField
+      FieldName = 'DTFINAL'
+    end
+  end
+  object cdsPessoa_Sistema: TClientDataSet
+    Aggregates = <>
+    IndexFieldNames = 'ID_PESSOA;ID_SISTEMA'
+    Params = <>
+    ProviderName = 'dspPessoa_Sistema'
+    Left = 356
+    Top = 253
+    object cdsPessoa_SistemaID_PESSOA: TIntegerField
+      FieldName = 'ID_PESSOA'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object cdsPessoa_SistemaID_SISTEMA: TIntegerField
+      FieldName = 'ID_SISTEMA'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object cdsPessoa_SistemaDTINICIO: TDateField
+      FieldName = 'DTINICIO'
+    end
+    object cdsPessoa_SistemaDTFINAL: TDateField
+      FieldName = 'DTFINAL'
+    end
+  end
+  object dspPessoa_Sistema: TDataSetProvider
+    DataSet = sdsPessoa_Sistema
+    UpdateMode = upWhereKeyOnly
+    Left = 320
+    Top = 255
   end
 end

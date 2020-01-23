@@ -111,7 +111,9 @@ uses
   uDmVersao in 'uDmVersao.pas' {dmVersao: TDataModule},
   uDmRemoto in 'uDmRemoto.pas' {dmRemoto: TDataModule},
   uIntegracao in 'uIntegracao.pas',
-  uUtilPadrao in 'uUtilPadrao.pas';
+  uUtilPadrao in 'uUtilPadrao.pas',
+  uPessoa_Usuario in 'uPessoa_Usuario.pas' {fPessoa_Usuario},
+  uPessoa_Sistema in 'uPessoa_Sistema.pas' {fPessoa_Sistema};
 
 {$R *.res}
 

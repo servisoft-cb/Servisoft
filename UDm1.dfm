@@ -13,7 +13,9 @@ object Dm1: TDm1
     LoginPrompt = False
     Params.Strings = (
       'DriverName=Interbase'
-      'Database=localhost:D:\Fontes\$Servisoft\Servisoft\Servisoft.FDB'
+      
+        'Database=localhost:D:\Fontes\$Servisoft\Bases\Servisoft\Servisof' +
+        't.FDB'
       'RoleName=RoleName'
       'User_Name=sysdba'
       'Password=masterkey'
@@ -28,7 +30,6 @@ object Dm1: TDm1
       'Trim Char=False')
     VendorLib = 'gds32.dll'
     BeforeConnect = ConexaoBeforeConnect
-    Connected = True
     Left = 19
     Top = 9
   end
@@ -5553,7 +5554,6 @@ object Dm1: TDm1
     Top = 257
     object tUsuarioID: TIntegerField
       FieldName = 'ID'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
     object tUsuarioNOME: TStringField
@@ -5567,38 +5567,6 @@ object Dm1: TDm1
     object tUsuarioSENHA: TStringField
       FieldName = 'SENHA'
       Size = 8
-    end
-    object tUsuarioEMAIL: TStringField
-      FieldName = 'EMAIL'
-      Size = 50
-    end
-    object tUsuarioFONE: TStringField
-      FieldName = 'FONE'
-      Size = 14
-    end
-    object tUsuarioEMPRESA: TStringField
-      FieldName = 'EMPRESA'
-      Size = 50
-    end
-    object tUsuarioESTADO: TStringField
-      FieldName = 'ESTADO'
-      Size = 50
-    end
-    object tUsuarioCIDADE: TStringField
-      FieldName = 'CIDADE'
-      Size = 50
-    end
-    object tUsuarioENDERECO: TStringField
-      FieldName = 'ENDERECO'
-      Size = 50
-    end
-    object tUsuarioCEP: TStringField
-      FieldName = 'CEP'
-      Size = 15
-    end
-    object tUsuarioPROFISSAO: TStringField
-      FieldName = 'PROFISSAO'
-      Size = 40
     end
     object tUsuarioNIVEL: TIntegerField
       FieldName = 'NIVEL'
@@ -6423,8 +6391,8 @@ object Dm1: TDm1
     SQL.Strings = (
       'alter table empregados add vinculo Char(1)')
     SQLConnection = Conexao
-    Left = 372
-    Top = 500
+    Left = 480
+    Top = 421
   end
   object Clausula: TSQLDataSet
     NoMetadata = True
@@ -7007,8 +6975,8 @@ object Dm1: TDm1
       'Provider=MSDASQL.1;Persist Security Info=False;Data Source=MTA;M' +
       'ode=ReadWrite'
     Parameters = <>
-    Left = 400
-    Top = 436
+    Left = 411
+    Top = 415
   end
   object dsmPessoa: TDataSource
     DataSet = Pessoa
@@ -7109,7 +7077,7 @@ object Dm1: TDm1
       end>
     SQLConnection = Conexao
     Left = 112
-    Top = 496
+    Top = 497
     object sdsPessoaChaveID: TIntegerField
       FieldName = 'ID'
       Required = True
@@ -7128,7 +7096,6 @@ object Dm1: TDm1
   end
   object cdsPessoaChave: TClientDataSet
     Aggregates = <>
-    DataSetField = tPessoasdsPessoaChave
     Params = <>
     OnCalcFields = cdsPessoaChaveCalcFields
     Left = 144
@@ -7162,8 +7129,8 @@ object Dm1: TDm1
   end
   object Decoder1: TIdDecoderMIME
     FillChar = '='
-    Left = 541
-    Top = 432
+    Left = 570
+    Top = 403
   end
   object sdsPessoaModulos: TSQLDataSet
     NoMetadata = True
@@ -7419,5 +7386,189 @@ object Dm1: TDm1
     DataSet = cdsSistema
     Left = 709
     Top = 452
+  end
+  object sdsPessoa_Usuario: TSQLDataSet
+    NoMetadata = True
+    GetMetadata = False
+    CommandText = 'SELECT * '#13#10'FROM PESSOA_USUARIO'#13#10'WHERE ID_PESSOA = :ID_PESSOA'
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'ID_PESSOA'
+        ParamType = ptInput
+      end>
+    SQLConnection = Conexao
+    Left = 279
+    Top = 455
+    object sdsPessoa_UsuarioID_PESSOA: TIntegerField
+      FieldName = 'ID_PESSOA'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object sdsPessoa_UsuarioID_USUARIO: TIntegerField
+      FieldName = 'ID_USUARIO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+  end
+  object cdsPessoa_Usuario: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspPessoa_Usuario'
+    OnCalcFields = cdsPessoa_UsuarioCalcFields
+    Left = 336
+    Top = 455
+    object cdsPessoa_UsuarioID_PESSOA: TIntegerField
+      FieldName = 'ID_PESSOA'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object cdsPessoa_UsuarioID_USUARIO: TIntegerField
+      FieldName = 'ID_USUARIO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object cdsPessoa_UsuarioclUsuario: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'clUsuario'
+      Size = 30
+      Calculated = True
+    end
+  end
+  object dsPessoa_Usuario: TDataSource
+    DataSet = cdsPessoa_Usuario
+    Left = 359
+    Top = 455
+  end
+  object dspPessoa_Usuario: TDataSetProvider
+    DataSet = sdsPessoa_Usuario
+    UpdateMode = upWhereKeyOnly
+    Left = 306
+    Top = 455
+  end
+  object qUsuario: TSQLQuery
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'ID'
+        ParamType = ptInput
+      end>
+    SQL.Strings = (
+      'SELECT U.id,  U.nome, U.login'
+      'FROM USUARIO U'
+      'WHERE U.ID = :ID')
+    SQLConnection = Conexao
+    Left = 466
+    Top = 503
+    object qUsuarioID: TIntegerField
+      FieldName = 'ID'
+      Required = True
+    end
+    object qUsuarioNOME: TStringField
+      FieldName = 'NOME'
+      Size = 50
+    end
+    object qUsuarioLOGIN: TStringField
+      FieldName = 'LOGIN'
+      Size = 10
+    end
+  end
+  object sdsPessoa_Sistema: TSQLDataSet
+    NoMetadata = True
+    GetMetadata = False
+    CommandText = 'SELECT * '#13#10'FROM PESSOA_SISTEMA'#13#10'WHERE ID_PESSOA = :ID_PESSOA'#13#10
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'ID_PESSOA'
+        ParamType = ptInput
+      end>
+    SQLConnection = Conexao
+    Left = 267
+    Top = 504
+    object sdsPessoa_SistemaID_PESSOA: TIntegerField
+      FieldName = 'ID_PESSOA'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object sdsPessoa_SistemaID_SISTEMA: TIntegerField
+      FieldName = 'ID_SISTEMA'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object sdsPessoa_SistemaDTINICIO: TDateField
+      FieldName = 'DTINICIO'
+    end
+    object sdsPessoa_SistemaDTFINAL: TDateField
+      FieldName = 'DTFINAL'
+    end
+  end
+  object cdsPessoa_Sistema: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspPessoa_Sistema'
+    OnCalcFields = cdsPessoa_SistemaCalcFields
+    Left = 329
+    Top = 504
+    object cdsPessoa_SistemaID_PESSOA: TIntegerField
+      FieldName = 'ID_PESSOA'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object cdsPessoa_SistemaID_SISTEMA: TIntegerField
+      FieldName = 'ID_SISTEMA'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object cdsPessoa_SistemaDTINICIO: TDateField
+      FieldName = 'DTINICIO'
+    end
+    object cdsPessoa_SistemaDTFINAL: TDateField
+      FieldName = 'DTFINAL'
+    end
+    object cdsPessoa_SistemaclNomeSistema: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'clNomeSistema'
+      Size = 40
+      Calculated = True
+    end
+  end
+  object dsPessoa_Sistema: TDataSource
+    DataSet = cdsPessoa_Sistema
+    Left = 352
+    Top = 504
+  end
+  object dspPessoa_Sistema: TDataSetProvider
+    DataSet = sdsPessoa_Sistema
+    UpdateMode = upWhereKeyOnly
+    Left = 301
+    Top = 504
+  end
+  object qSistema: TSQLQuery
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'ID'
+        ParamType = ptInput
+      end>
+    SQL.Strings = (
+      'select S.ID, S.NOME'
+      'from SISTEMA S'
+      'where S.ID = :ID')
+    SQLConnection = Conexao
+    Left = 531
+    Top = 482
+    object qSistemaID: TIntegerField
+      FieldName = 'ID'
+      Required = True
+    end
+    object qSistemaNOME: TStringField
+      FieldName = 'NOME'
+      Size = 30
+    end
   end
 end

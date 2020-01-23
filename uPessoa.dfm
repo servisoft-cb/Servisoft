@@ -1914,8 +1914,8 @@ object fPessoa: TfPessoa
       object JvDBGrid5: TJvDBGrid
         Left = 0
         Top = 0
-        Width = 627
-        Height = 372
+        Width = 635
+        Height = 435
         Align = alClient
         DataSource = Dm1.dsPessoaModulos
         ReadOnly = True
@@ -1946,8 +1946,8 @@ object fPessoa: TfPessoa
       end
       object Panel6: TPanel
         Left = 0
-        Top = 372
-        Width = 627
+        Top = 435
+        Width = 635
         Height = 31
         Align = alBottom
         TabOrder = 1

@@ -173,6 +173,24 @@ type
     sdsPessoaCODVENDEDOR_COB: TIntegerField;
     sdsPessoaEMPRESA_PRINCIPAL: TStringField;
     sdsPessoaID_EMPRESA_PRINCIPAL: TIntegerField;
+    sdsPessoa_Usuario: TSQLDataSet;
+    sdsPessoa_UsuarioID_PESSOA: TIntegerField;
+    sdsPessoa_UsuarioID_USUARIO: TIntegerField;
+    cdsPessoa_Usuario: TClientDataSet;
+    cdsPessoa_UsuarioID_PESSOA: TIntegerField;
+    cdsPessoa_UsuarioID_USUARIO: TIntegerField;
+    dspPessoa_Usuario: TDataSetProvider;
+    sdsPessoa_Sistema: TSQLDataSet;
+    cdsPessoa_Sistema: TClientDataSet;
+    dspPessoa_Sistema: TDataSetProvider;
+    sdsPessoa_SistemaID_PESSOA: TIntegerField;
+    sdsPessoa_SistemaID_SISTEMA: TIntegerField;
+    sdsPessoa_SistemaDTINICIO: TDateField;
+    sdsPessoa_SistemaDTFINAL: TDateField;
+    cdsPessoa_SistemaID_PESSOA: TIntegerField;
+    cdsPessoa_SistemaID_SISTEMA: TIntegerField;
+    cdsPessoa_SistemaDTINICIO: TDateField;
+    cdsPessoa_SistemaDTFINAL: TDateField;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
@@ -185,6 +203,10 @@ type
     procedure ExcluirRegistro();
     procedure CancelarRegistro();
     procedure GravarRegistro();
+
+    procedure prc_Localizar_Pessoa_Usuario(ID_Pessoa,ID_Usuario : Integer);
+    procedure prc_Localizar_Pessoa_Sistema(ID_Pessoa,ID_Sistema : Integer);
+    
   end;
 
 var
@@ -282,6 +304,22 @@ begin
 
   if cdsPessoa.ApplyUpdates(0) > 0 then
     Abort;
+end;
+
+procedure TdmRemoto.prc_Localizar_Pessoa_Usuario(ID_Pessoa, ID_Usuario: Integer);
+begin
+  cdsPessoa_Usuario.Close;
+  sdsPessoa_Usuario.ParamByName('ID_PESSOA').AsInteger  := ID_Pessoa;
+  sdsPessoa_Usuario.ParamByName('ID_USUARIO').AsInteger := ID_Usuario;
+  cdsPessoa_Usuario.Open;
+end;
+
+procedure TdmRemoto.prc_Localizar_Pessoa_Sistema(ID_Pessoa, ID_Sistema: Integer);
+begin
+  cdsPessoa_Sistema.Close;
+  sdsPessoa_Sistema.ParamByName('ID_PESSOA').AsInteger  := ID_Pessoa;
+  sdsPessoa_Sistema.ParamByName('ID_SISTEMA').AsInteger := ID_Sistema;
+  cdsPessoa_Sistema.Open;
 end;
 
 end.

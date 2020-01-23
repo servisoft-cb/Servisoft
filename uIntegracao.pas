@@ -11,6 +11,12 @@ procedure prc_Ler_Vcto_Site(fDm1: TDm1);
 procedure Prc_Ler_Pessoa_FB(fDm1: TDm1; Codigo: Integer);
 procedure Prc_Excluir_Pessoa_FB(fDm1: TDm1; Codigo: Integer);
 
+procedure Prc_Gravar_Pessoa_Usuario(ID_Pessoa, ID_Usuario: Integer);
+procedure Prc_Excluir_Pessoa_Usuario(ID_Pessoa, ID_Usuario: Integer);
+
+procedure Prc_Gravar_Pessoa_Sistema(ID_Pessoa, ID_Sistema: Integer ; DtInicio, DtFinal : TDate);
+procedure Prc_Excluir_Pessoa_Sistema(ID_Pessoa, ID_Sistema: Integer);
+
 function ProximaSequencia(NomeTabela: String; Filial: Integer): Integer;
 
 implementation
@@ -193,6 +199,88 @@ end;
 procedure Prc_Ler_Pessoa_FB(fDm1: TDm1; Codigo: Integer);
 begin
 
+end;
+
+procedure Prc_Gravar_Pessoa_Usuario(ID_Pessoa, ID_Usuario: Integer);
+var
+  fDmRemoto: TdmRemoto;
+begin
+   fDmRemoto := TdmRemoto.Create(Nil);
+   try
+     fDmRemoto.prc_Localizar_Pessoa_Usuario(ID_Pessoa,ID_Usuario);
+     if fDmRemoto.cdsPessoa_Usuario.IsEmpty then
+     begin
+       fDmRemoto.cdsPessoa_Usuario.Insert;
+       fDmRemoto.cdsPessoa_UsuarioID_PESSOA.AsInteger  := ID_Pessoa;
+       fDmRemoto.cdsPessoa_UsuarioID_USUARIO.AsInteger := ID_Usuario;
+       fDmRemoto.cdsPessoa_Usuario.Post;
+       fDmRemoto.cdsPessoa_Usuario.ApplyUpdates(0);
+     end;
+   finally
+     FreeAndNil(fDmRemoto);
+   end;
+end;
+
+procedure Prc_Excluir_Pessoa_Usuario(ID_Pessoa, ID_Usuario: Integer);
+Var
+   fDmRemoto: TDmRemoto;
+begin
+   fDmRemoto := TDmRemoto.Create(Nil);
+   try
+     fDmRemoto.prc_Localizar_Pessoa_Usuario(ID_Pessoa,ID_Usuario);
+     if not fDmRemoto.cdsPessoa_Usuario.IsEmpty then
+     begin
+       fDmRemoto.cdsPessoa_Usuario.Delete;
+       fDmRemoto.cdsPessoa_Usuario.ApplyUpdates(0);
+     end;
+   finally
+      FreeAndNil(fDmRemoto);
+   end;
+end;
+
+procedure Prc_Gravar_Pessoa_Sistema(ID_Pessoa, ID_Sistema: Integer ; DtInicio, DtFinal : TDate);
+var
+  fDmRemoto: TdmRemoto;
+begin
+   fDmRemoto := TdmRemoto.Create(Nil);
+   try
+     fDmRemoto.prc_Localizar_Pessoa_Sistema(ID_Pessoa,ID_Sistema);
+     if fDmRemoto.cdsPessoa_Sistema.IsEmpty then
+     begin
+       fDmRemoto.cdsPessoa_Sistema.Insert;
+       fDmRemoto.cdsPessoa_SistemaID_PESSOA.AsInteger  := ID_Pessoa;
+       fDmRemoto.cdsPessoa_SistemaID_SISTEMA.AsInteger := ID_Sistema;
+       if DtInicio > 10 then
+         fDmRemoto.cdsPessoa_SistemaDTINICIO.AsDateTime := DtInicio
+       else
+         fDmRemoto.cdsPessoa_SistemaDTINICIO.Clear;
+       if DtFinal > 10 then
+         fDmRemoto.cdsPessoa_SistemaDTFINAL.AsDateTime := DtFinal
+       else
+         fDmRemoto.cdsPessoa_SistemaDTFINAL.Clear;
+       fDmRemoto.cdsPessoa_Sistema.Post;
+       fDmRemoto.cdsPessoa_Sistema.ApplyUpdates(0);
+     end;
+   finally
+     FreeAndNil(fDmRemoto);
+   end;
+end;
+
+procedure Prc_Excluir_Pessoa_Sistema(ID_Pessoa, ID_Sistema: Integer);
+Var
+   fDmRemoto: TDmRemoto;
+begin
+   fDmRemoto := TDmRemoto.Create(Nil);
+   try
+     fDmRemoto.prc_Localizar_Pessoa_Sistema(ID_Pessoa,ID_Sistema);
+     if not fDmRemoto.cdsPessoa_Sistema.IsEmpty then
+     begin
+       fDmRemoto.cdsPessoa_Sistema.Delete;
+       fDmRemoto.cdsPessoa_Sistema.ApplyUpdates(0);
+     end;
+   finally
+      FreeAndNil(fDmRemoto);
+   end;
 end;
 
 end.
