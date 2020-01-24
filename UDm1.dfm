@@ -30,8 +30,7 @@ object Dm1: TDm1
       'Trim Char=False')
     VendorLib = 'gds32.dll'
     BeforeConnect = ConexaoBeforeConnect
-    Connected = True
-    Left = 19
+    Left = 20
     Top = 9
   end
   object Pessoa: TSQLDataSet
@@ -7120,6 +7119,7 @@ object Dm1: TDm1
   end
   object cdsPessoaChave: TClientDataSet
     Aggregates = <>
+    DataSetField = tPessoasdsPessoaChave
     Params = <>
     OnCalcFields = cdsPessoaChaveCalcFields
     Left = 144
@@ -7605,6 +7605,19 @@ object Dm1: TDm1
     Left = 662
     Top = 512
     object qMaxUsuarioID: TIntegerField
+      FieldName = 'ID'
+    end
+  end
+  object qMaxSistema: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      'SELECT max(S.id) ID'
+      'FROM SISTEMA S')
+    SQLConnection = Conexao
+    Left = 708
+    Top = 515
+    object qMaxSistemaID: TIntegerField
       FieldName = 'ID'
     end
   end

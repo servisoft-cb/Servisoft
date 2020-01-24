@@ -256,12 +256,7 @@ procedure TfPessoaC.SMDBGrid1TitleClick(Column: TColumn);
 var
   i: Word;
 begin
-  ColunaOrdenada := Column.FieldName;
   Fdm1.tPessoa.IndexFieldNames := Column.FieldName;
-  Column.Title.Color := clBtnShadow;
-  for i := 0 to SMDBGrid1.Columns.Count - 1 do
-    if not (SMDBGrid1.Columns.Items[I] = Column) then
-      SMDBGrid1.Columns.Items[I].Title.Color := clBtnFace;
   Edit1.Text := '[Digite o nome e pressione F3 para localizar]';
   Edit1.SelectAll;
 end;

@@ -1,10 +1,10 @@
-object fUsuario: TfUsuario
+object fSistema: TfSistema
   Left = 340
   Top = 105
   Width = 646
   Height = 471
   BorderIcons = [biSystemMenu]
-  Caption = 'Cadastro de Usuario  (fUsuario)'
+  Caption = 'Cadastro de Sistema (fSistema)'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,7 +21,7 @@ object fUsuario: TfUsuario
     Left = 0
     Top = 0
     Width = 638
-    Height = 110
+    Height = 113
     Align = alTop
     UseDockManager = False
     ParentBackground = False
@@ -70,24 +70,9 @@ object fUsuario: TfUsuario
       ParentFont = False
       Transparent = True
     end
-    object Label4: TLabel
-      Left = 25
-      Top = 63
-      Width = 45
-      Height = 14
-      Alignment = taRightJustify
-      Caption = 'Senha:'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -12
-      Font.Name = 'Verdana'
-      Font.Style = []
-      ParentFont = False
-      Transparent = True
-    end
     object btnConfirmar: TNxButton
-      Left = 70
-      Top = 81
+      Left = 73
+      Top = 82
       Width = 74
       Caption = 'Confirmar'
       Font.Charset = DEFAULT_CHARSET
@@ -100,8 +85,8 @@ object fUsuario: TfUsuario
       OnClick = btnConfirmarClick
     end
     object btnExcluir: TNxButton
-      Left = 294
-      Top = 81
+      Left = 297
+      Top = 82
       Width = 75
       Caption = 'Excluir'
       Font.Charset = DEFAULT_CHARSET
@@ -110,19 +95,19 @@ object fUsuario: TfUsuario
       Font.Name = 'MS Sans Serif'
       Font.Style = []
       ParentFont = False
-      TabOrder = 6
+      TabOrder = 4
       OnClick = btnExcluirClick
     end
     object Edit1: TEdit
-      Left = 73
-      Top = 13
+      Left = 74
+      Top = 14
       Width = 182
       Height = 21
       MaxLength = 50
       TabOrder = 0
     end
     object JvxCurrencyEdit1: TJvxCurrencyEdit
-      Left = 369
+      Left = 368
       Top = 9
       Width = 75
       Height = 21
@@ -132,29 +117,11 @@ object fUsuario: TfUsuario
       DecimalPlaces = 0
       DisplayFormat = '0'
       ReadOnly = True
-      TabOrder = 7
-    end
-    object Edit2: TEdit
-      Left = 73
-      Top = 35
-      Width = 182
-      Height = 21
-      CharCase = ecUpperCase
-      MaxLength = 10
       TabOrder = 1
     end
-    object Edit3: TEdit
-      Left = 73
-      Top = 56
-      Width = 182
-      Height = 21
-      MaxLength = 10
-      PasswordChar = '*'
-      TabOrder = 2
-    end
     object btnAlterar: TNxButton
-      Left = 145
-      Top = 81
+      Left = 147
+      Top = 82
       Width = 75
       Caption = 'Alterar'
       Font.Charset = DEFAULT_CHARSET
@@ -163,12 +130,12 @@ object fUsuario: TfUsuario
       Font.Name = 'MS Sans Serif'
       Font.Style = []
       ParentFont = False
-      TabOrder = 4
+      TabOrder = 5
       OnClick = btnAlterarClick
     end
     object btnCancelar: TNxButton
-      Left = 219
-      Top = 81
+      Left = 222
+      Top = 82
       Width = 75
       Caption = 'Cancelar'
       Font.Charset = DEFAULT_CHARSET
@@ -177,18 +144,26 @@ object fUsuario: TfUsuario
       Font.Name = 'MS Sans Serif'
       Font.Style = []
       ParentFont = False
-      TabOrder = 5
+      TabOrder = 6
       OnClick = btnCancelarClick
+    end
+    object Memo1: TMemo
+      Left = 74
+      Top = 36
+      Width = 483
+      Height = 43
+      ScrollBars = ssVertical
+      TabOrder = 2
     end
   end
   object SMDBGrid1: TSMDBGrid
     Left = 0
-    Top = 110
+    Top = 113
     Width = 638
-    Height = 330
+    Height = 327
     Align = alClient
     Ctl3D = False
-    DataSource = Dm1.dsUsuario
+    DataSource = Dm1.dsSistema
     Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
     ParentCtl3D = False
     ReadOnly = True
@@ -237,22 +212,12 @@ object fUsuario: TfUsuario
       end
       item
         Expanded = False
-        FieldName = 'LOGIN'
+        FieldName = 'OBS'
         Title.Alignment = taCenter
-        Title.Caption = 'Login'
+        Title.Caption = 'Observa'#231#227'o'
         Title.Color = 16777088
-        Width = 154
+        Width = 400
         Visible = True
       end>
-  end
-  object Encoder1: TIdEncoderMIME
-    FillChar = '='
-    Left = 208
-    Top = 368
-  end
-  object Decoder1: TIdDecoderMIME
-    FillChar = '='
-    Left = 173
-    Top = 368
   end
 end

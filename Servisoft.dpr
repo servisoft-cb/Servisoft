@@ -113,7 +113,8 @@ uses
   uIntegracao in 'uIntegracao.pas',
   uUtilPadrao in 'uUtilPadrao.pas',
   uPessoa_Usuario in 'uPessoa_Usuario.pas' {fPessoa_Usuario},
-  uPessoa_Sistema in 'uPessoa_Sistema.pas' {fPessoa_Sistema};
+  uPessoa_Sistema in 'uPessoa_Sistema.pas' {fPessoa_Sistema},
+  USistema in 'USistema.pas' {fSistema};
 
 {$R *.res}
 

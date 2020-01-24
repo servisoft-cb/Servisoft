@@ -102,13 +102,15 @@ type
     ToolButton11: TToolButton;
     Image2: TImage;
     Image3: TImage;
-    Auxiliares1: TMenuItem;
     Programas1: TMenuItem;
     Verses1: TMenuItem;
     N1: TMenuItem;
     Logoff1: TMenuItem;
     Mdulos1: TMenuItem;
     SMDBGrid1: TSMDBGrid;
+    N3: TMenuItem;
+    Sistema1: TMenuItem;
+    Usurio2: TMenuItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Pessoas1Click(Sender: TObject);
     procedure Pas1Click(Sender: TObject);
@@ -169,6 +171,8 @@ type
     procedure Logoff1Click(Sender: TObject);
     procedure Mdulos1Click(Sender: TObject);
     procedure UserControl1AfterLogin(Sender: TObject);
+    procedure Sistema1Click(Sender: TObject);
+    procedure Usurio2Click(Sender: TObject);
   private
     { Private declarations }
     Fdm1: TDm1;
@@ -185,7 +189,8 @@ uses UPessoaC, UPais, UCidade, UGrupo, USitTributaria, UClasFiscal, UNatOperacao
   UUF, UMaoObra, UEmpresa, UBanco, UEstoque, UProdutoHist, UParametros, UContasPagar, UMovFinanceiro, UContasReceber,
   uSobre, uEmissaoBoleto, UJuros, UUsuario, uLogin, UAutorizacao, UConsComissaoVend, UOrcamentoPrev, uPlanoSaudeC,
   uServicoC, uFormaPgtoC, uCidadeC, uOrcamentoInstC, uClausulaC, UMovAvulso, UGeraMovMensal, UBcoItau, UContasPagarDet,
-  UContasReceberDet, UPrevBoleto2, uCentroCustoC, UConsCentroCusto, URecibo, uVersaoC, uModulo, uDmCons;
+  UContasReceberDet, UPrevBoleto2, uCentroCustoC, UConsCentroCusto, URecibo, uVersaoC, uModulo, uDmCons,
+  USistema;
 
 {$R *.dfm}
 
@@ -579,6 +584,20 @@ begin
   dmCons.cdsPessoaHist.Close;
   DmCons.sdsPessoaHist.ParamByName('U1').AsString := UserControl1.CurrentUser.LoginName;
   dmCons.cdsPessoaHist.Open;
+end;
+
+procedure TfMenu.Sistema1Click(Sender: TObject);
+begin
+  fSistema := tfSistema.Create(Self);
+  fSistema.ShowModal;
+  FreeAndNil(fSistema);
+end;
+
+procedure TfMenu.Usurio2Click(Sender: TObject);
+begin
+  fUsuario := tfUsuario.Create(Self);
+  fUsuario.ShowModal;
+  FreeAndNil(fUsuario);
 end;
 
 initialization

@@ -531,6 +531,17 @@ object fMenu: TfMenu
         Caption = 'M'#243'dulos'
         OnClick = Mdulos1Click
       end
+      object N3: TMenuItem
+        Caption = '-'
+      end
+      object Sistema1: TMenuItem
+        Caption = 'Sistema'
+        OnClick = Sistema1Click
+      end
+      object Usurio2: TMenuItem
+        Caption = 'Usu'#225'rio'
+        OnClick = Usurio2Click
+      end
     end
     object Sair1: TMenuItem
       Caption = 'Vendas'
@@ -626,9 +637,6 @@ object fMenu: TfMenu
         Caption = 'Log off'
         OnClick = Logoff1Click
       end
-    end
-    object Auxiliares1: TMenuItem
-      Action = alAuxiliares
     end
     object Programas1: TMenuItem
       Caption = 'Programas'

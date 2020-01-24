@@ -49,7 +49,7 @@ object fPessoa: TfPessoa
     Top = 0
     Width = 643
     Height = 494
-    ActivePage = TabSheet6
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -1323,7 +1323,6 @@ object fPessoa: TfPessoa
           item
             Expanded = False
             FieldName = 'TELEFONE'
-            Width = 64
             Visible = True
           end
           item
@@ -1334,7 +1333,6 @@ object fPessoa: TfPessoa
           item
             Expanded = False
             FieldName = 'EMAIL'
-            Width = 64
             Visible = True
           end>
       end
@@ -1739,7 +1737,6 @@ object fPessoa: TfPessoa
               item
                 Expanded = False
                 FieldName = 'VALOR'
-                Width = 64
                 Visible = True
               end>
           end

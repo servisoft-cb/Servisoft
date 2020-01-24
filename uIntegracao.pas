@@ -14,6 +14,9 @@ procedure Prc_Excluir_Pessoa_FB(fDm1: TDm1; Codigo: Integer);
 procedure Prc_Gravar_Usuario(ID : Integer ; Nome, Login, Senha : String);
 procedure Prc_Excluir_Usuario(ID: Integer);
 
+procedure Prc_Gravar_Sistema(ID : Integer ; Nome, Obs : String);
+procedure Prc_Excluir_Sistema(ID: Integer);
+
 procedure Prc_Gravar_Pessoa_Usuario(ID_Pessoa, ID_Usuario: Integer);
 procedure Prc_Excluir_Pessoa_Usuario(ID_Pessoa, ID_Usuario: Integer);
 
@@ -330,6 +333,47 @@ begin
    end;
 end;
 
+procedure Prc_Gravar_Sistema(ID : Integer ; Nome, Obs : String);
+var
+  fDmRemoto: TdmRemoto;
+begin
+   fDmRemoto := TdmRemoto.Create(Nil);
+   try
+     fDmRemoto.prc_Localizar_Sistema(ID);
+     if not fDmRemoto.cdsSistema.IsEmpty then
+       fDmRemoto.cdsSistema.Edit
+     else
+     if fDmRemoto.cdsSistema.IsEmpty then
+     begin
+       fDmRemoto.cdsSistema.Insert;
+       fDmRemoto.cdsSistemaID.AsInteger := ID;
+     end;
+     fDmRemoto.cdsSistemaNOME.AsString  := Nome;
+     fDmRemoto.cdsSistemaOBS.AsString   := Obs;
+     fDmRemoto.cdsSistema.Post;
+     fDmRemoto.cdsSistema.ApplyUpdates(0);
+
+   finally
+     FreeAndNil(fDmRemoto);
+   end;
+end;
+
+procedure Prc_Excluir_Sistema(ID: Integer);
+Var
+   fDmRemoto: TDmRemoto;
+begin
+   fDmRemoto := TDmRemoto.Create(Nil);
+   try
+     fDmRemoto.prc_Localizar_Sistema(ID);
+     if not fDmRemoto.cdsSistema.IsEmpty then
+     begin
+       fDmRemoto.cdsSistema.Delete;
+       fDmRemoto.cdsSistema.ApplyUpdates(0);
+     end;
+   finally
+      FreeAndNil(fDmRemoto);
+   end;
+end;
 
 end.
 

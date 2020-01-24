@@ -1445,6 +1445,8 @@ type
     sdsUsuarioNIVEL: TIntegerField;
     qMaxUsuario: TSQLQuery;
     qMaxUsuarioID: TIntegerField;
+    qMaxSistema: TSQLQuery;
+    qMaxSistemaID: TIntegerField;
     procedure tPessoaNewRecord(DataSet: TDataSet);
     procedure tProdutoNewRecord(DataSet: TDataSet);
     procedure tCondPgtoNewRecord(DataSet: TDataSet);

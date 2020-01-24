@@ -27,7 +27,6 @@ object dmRemoto: TdmRemoto
       'Interbase TransIsolation=ReadCommited'
       'Trim Char=False')
     VendorLib = 'gds32.dll'
-    Connected = True
     Left = 57
     Top = 47
   end
@@ -826,8 +825,8 @@ object dmRemoto: TdmRemoto
         ParamType = ptInput
       end>
     SQLConnection = scConexao
-    Left = 317
-    Top = 120
+    Left = 425
+    Top = 49
     object sdsUsuarioID: TIntegerField
       FieldName = 'ID'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -854,8 +853,8 @@ object dmRemoto: TdmRemoto
     IndexFieldNames = 'ID'
     Params = <>
     ProviderName = 'dspUsuario'
-    Left = 391
-    Top = 120
+    Left = 501
+    Top = 48
     object cdsUsuarioID: TIntegerField
       FieldName = 'ID'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -880,7 +879,62 @@ object dmRemoto: TdmRemoto
   object dspUsuario: TDataSetProvider
     DataSet = sdsUsuario
     UpdateMode = upWhereKeyOnly
-    Left = 353
-    Top = 120
+    Left = 462
+    Top = 48
+  end
+  object sdsSistema: TSQLDataSet
+    NoMetadata = True
+    GetMetadata = False
+    CommandText = 'SELECT * '#13#10'FROM SISTEMA'#13#10'WHERE ID = :ID'#13#10
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'ID'
+        ParamType = ptInput
+      end>
+    SQLConnection = scConexao
+    Left = 424
+    Top = 107
+    object sdsSistemaID: TIntegerField
+      FieldName = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object sdsSistemaNOME: TStringField
+      FieldName = 'NOME'
+      Size = 30
+    end
+    object sdsSistemaOBS: TStringField
+      FieldName = 'OBS'
+      Size = 250
+    end
+  end
+  object cdsSistema: TClientDataSet
+    Aggregates = <>
+    IndexFieldNames = 'ID'
+    Params = <>
+    ProviderName = 'dspSistema'
+    Left = 499
+    Top = 107
+    object cdsSistemaID: TIntegerField
+      FieldName = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object cdsSistemaNOME: TStringField
+      FieldName = 'NOME'
+      Size = 30
+    end
+    object cdsSistemaOBS: TStringField
+      FieldName = 'OBS'
+      Size = 250
+    end
+  end
+  object dspSistema: TDataSetProvider
+    DataSet = sdsSistema
+    UpdateMode = upWhereKeyOnly
+    Left = 461
+    Top = 107
   end
 end

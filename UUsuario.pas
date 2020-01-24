@@ -5,7 +5,8 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, Dialogs, StdCtrls, DBCtrls, Buttons, Mask,
   db, ExtCtrls, UDm1, rsDBUtils, JvToolEdit, JvDBCtrl, JvDBComb, 
-  NxCollection, Grids, DBGrids, SMDBGrid, JvLookup, JvCurrEdit;
+  NxCollection, Grids, DBGrids, SMDBGrid, JvLookup, JvCurrEdit, IdCoder,
+  IdCoder3to4, IdCoderMIME, IdBaseComponent;
 
 type
   TfUsuario = class(TForm)
@@ -23,6 +24,8 @@ type
     Edit3: TEdit;
     btnAlterar: TNxButton;
     btnCancelar: TNxButton;
+    Encoder1: TIdEncoderMIME;
+    Decoder1: TIdDecoderMIME;
     procedure FormShow(Sender: TObject);
     procedure btnConfirmarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
@@ -31,11 +34,11 @@ type
     procedure btnAlterarClick(Sender: TObject);
   private
     { Private declarations }
+    fDm1: TDm1;
     procedure prc_Limpa_Campos;
-    
+
   public
     { Public declarations }
-    fDm1: TDm1;
   end;
 
 var
@@ -49,7 +52,9 @@ uses uIntegracao;
 
 procedure TfUsuario.FormShow(Sender: TObject);
 begin
-  oDBUtils.SetDataSourceProperties(Self, Fdm1);
+  Fdm1 := Tdm1.Create(Self);
+  oDBUtils.SetDataSourceProperties(Self,fDm1);
+  oDBUtils.OpenTables(True,Self);
   fDm1.cdsUsuario.Close;
   fDm1.cdsUsuario.Open;
 end;
@@ -82,10 +87,10 @@ begin
   begin
     fDm1.qMaxUsuario.Close;
     fDm1.qMaxUsuario.Open;
-    vIDAux := fDm1.qMaxUsuarioID.AsInteger;
+    vIDAux := fDm1.qMaxUsuarioID.AsInteger + 1;
 
     fDm1.cdsUsuario.Insert;
-    fDm1.cdsUsuarioID.AsInteger   := vIDAux + 1;
+    fDm1.cdsUsuarioID.AsInteger   := vIDAux;
     fDm1.cdsUsuarioSENHA.AsString := Edit3.Text;
   end;
   fDm1.cdsUsuarioNOME.AsString  := Edit1.Text;
@@ -118,6 +123,7 @@ end;
 procedure TfUsuario.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
+  FreeAndNil(fDm1);
   Action := Cafree;
 end;
 

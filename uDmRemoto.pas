@@ -204,6 +204,15 @@ type
     cdsUsuarioLOGIN: TStringField;
     cdsUsuarioSENHA: TStringField;
     cdsUsuarioNIVEL: TIntegerField;
+    sdsSistema: TSQLDataSet;
+    cdsSistema: TClientDataSet;
+    dspSistema: TDataSetProvider;
+    sdsSistemaID: TIntegerField;
+    sdsSistemaNOME: TStringField;
+    sdsSistemaOBS: TStringField;
+    cdsSistemaID: TIntegerField;
+    cdsSistemaNOME: TStringField;
+    cdsSistemaOBS: TStringField;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
@@ -218,6 +227,7 @@ type
     procedure GravarRegistro();
 
     procedure prc_Localizar_Usuario(ID : Integer);
+    procedure prc_Localizar_Sistema(ID : Integer);
     procedure prc_Localizar_Pessoa_Usuario(ID_Pessoa,ID_Usuario : Integer);
     procedure prc_Localizar_Pessoa_Sistema(ID_Pessoa,ID_Sistema : Integer);
 
@@ -341,6 +351,13 @@ begin
   cdsUsuario.Close;
   sdsUsuario.ParamByName('ID').AsInteger  := ID;
   cdsUsuario.Open;
+end;
+
+procedure TdmRemoto.prc_Localizar_Sistema(ID: Integer);
+begin
+  cdsSistema.Close;
+  sdsSistema.ParamByName('ID').AsInteger  := ID;
+  cdsSistema.Open;
 end;
 
 end.
