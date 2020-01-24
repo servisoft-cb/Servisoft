@@ -27,8 +27,8 @@ object dmRemoto: TdmRemoto
       'Interbase TransIsolation=ReadCommited'
       'Trim Char=False')
     VendorLib = 'gds32.dll'
-    Left = 57
-    Top = 47
+    Left = 55
+    Top = 48
   end
   object sdsPessoa: TSQLDataSet
     NoMetadata = True
