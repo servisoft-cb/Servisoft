@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs, ExtCtrls, StdCtrls, DB, QRCTRLS, SqlExpr, dbXPress,
-  Variants, uDm1, uDmRemoto;
+  Variants, uDm1, uDmRemoto, IdCoder, JvLookup, IdCoder3to4, IdCoderMIME;
 
 procedure Prc_Gravar_Pessoa_FB(fDm1: TDm1; Codigo: Integer);
 procedure prc_Ler_Vcto_Site(fDm1: TDm1);
@@ -293,7 +293,9 @@ end;
 procedure Prc_Gravar_Usuario(ID : Integer ; Nome, Login, Senha : String);
 var
   fDmRemoto: TdmRemoto;
+  Encoder1: TIdEncoderMIME;
 begin
+   Encoder1   := TIdEncoderMIME.Create(nil);
    fDmRemoto := TdmRemoto.Create(Nil);
    try
      fDmRemoto.prc_Localizar_Usuario(ID);
@@ -306,6 +308,8 @@ begin
        fDmRemoto.cdsUsuarioID.AsInteger := ID;
        fDmRemoto.cdsUsuarioSENHA.AsString := Senha;
      end;
+     if trim(fDmRemoto.cdsUsuarioSENHA.AsString) = '' then
+       fDmRemoto.cdsUsuarioSENHA.AsString := Encoder1.EncodeString(Senha);
      fDmRemoto.cdsUsuarioNOME.AsString  := Nome;
      fDmRemoto.cdsUsuarioLOGIN.AsString := Login;
      fDmRemoto.cdsUsuario.Post;
@@ -313,6 +317,7 @@ begin
 
    finally
      FreeAndNil(fDmRemoto);
+     FreeAndNil(Encoder1);
    end;
 end;
 

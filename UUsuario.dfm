@@ -252,7 +252,7 @@ object fUsuario: TfUsuario
   end
   object Decoder1: TIdDecoderMIME
     FillChar = '='
-    Left = 173
-    Top = 368
+    Left = 172
+    Top = 367
   end
 end

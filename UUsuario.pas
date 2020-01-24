@@ -91,8 +91,8 @@ begin
 
     fDm1.cdsUsuario.Insert;
     fDm1.cdsUsuarioID.AsInteger   := vIDAux;
-    fDm1.cdsUsuarioSENHA.AsString := Edit3.Text;
   end;
+  fDm1.cdsUsuarioSENHA.AsString := Encoder1.EncodeString(Edit3.Text);
   fDm1.cdsUsuarioNOME.AsString  := Edit1.Text;
   fDm1.cdsUsuarioLOGIN.AsString := Edit2.Text;
 
@@ -149,7 +149,11 @@ begin
   JvxCurrencyEdit1.AsInteger := fDm1.cdsUsuarioID.AsInteger;
   Edit1.Text := fDm1.cdsUsuarioNOME.AsString;
   Edit2.Text := fDm1.cdsUsuarioLOGIN.AsString;
-  Edit3.Text := fDm1.cdsUsuarioSENHA.AsString;
+  //Edit3.Text := Decoder1.DecodeString(fDm1.cdsUsuarioSENHA.AsString);
+  if trim(fDm1.cdsUsuarioSENHA.AsString) <> '' then
+    Edit3.Text := Decoder1.DecodeString(fDm1.cdsUsuarioSENHA.AsString)
+  else
+    Edit3.Clear;
   Edit3.SetFocus;
 end;
 
