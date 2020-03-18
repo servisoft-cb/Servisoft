@@ -104,7 +104,7 @@ var
 implementation
 
 uses UDmCons, Math, UProduto, USitTributaria,
-  UTipoCobranca, UMaoObra, UNatOperacao, UProdutoIt;
+  UTipoCobranca, UNatOperacao, UProdutoIt;
 
 {$R *.dfm}
 

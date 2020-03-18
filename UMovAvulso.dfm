@@ -149,7 +149,7 @@ object fMovAvulso: TfMovAvulso
               FieldName = 'CODIGO'
               Title.Alignment = taCenter
               Title.Caption = 'N'#186' Movimento'
-              Width = 188
+              Width = 190
               Visible = True
             end
             item
@@ -158,7 +158,7 @@ object fMovAvulso: TfMovAvulso
               FieldName = 'DTEMISSAO'
               Title.Alignment = taCenter
               Title.Caption = 'Dt. Emiss'#227'o'
-              Width = 141
+              Width = 142
               Visible = True
             end
             item
@@ -166,7 +166,7 @@ object fMovAvulso: TfMovAvulso
               FieldName = 'NOMECLIENTE'
               Title.Alignment = taCenter
               Title.Caption = 'Nome do Cliente'
-              Width = 115
+              Width = 117
               Visible = True
             end
             item
@@ -182,7 +182,7 @@ object fMovAvulso: TfMovAvulso
               FieldName = 'VLRTOTALITENS'
               Title.Alignment = taCenter
               Title.Caption = 'Vlr. Total Itens'
-              Width = 97
+              Width = 98
               Visible = True
             end
             item
@@ -191,7 +191,7 @@ object fMovAvulso: TfMovAvulso
               FieldName = 'CODCLIENTE'
               Title.Alignment = taCenter
               Title.Caption = 'C'#243'd. Cliente'
-              Width = 115
+              Width = 117
               Visible = True
             end>
         end

@@ -179,7 +179,6 @@ type
     PopupMenu1: TPopupMenu;
     ImprimirConsulta1: TMenuItem;
     ImprimirBoletos1: TMenuItem;
-    ImprimirBoleto21: TMenuItem;
     ImprimirContasaReceberDetalhado1: TMenuItem;
     ImprimirAcumuladodeClientes1: TMenuItem;
     BitBtn9: TBitBtn;
@@ -229,7 +228,6 @@ type
     procedure BitBtn7Click(Sender: TObject);
     procedure Label26Click(Sender: TObject);
     procedure ImprimirAcumuladodeClientes1Click(Sender: TObject);
-    procedure ImprimirBoleto21Click(Sender: TObject);
     procedure Label44Click(Sender: TObject);
     procedure BitBtn9Click(Sender: TObject);
     procedure Edit1KeyDown(Sender: TObject; var Key: Word;
@@ -261,7 +259,7 @@ implementation
 
 uses UDmCons, Math, UPessoa, StdConvs, UCondPgto, UDevolucaoRec,
   uPortaImpressao, UContasReceberRel, UContasReceberDet,
-  UContasReceberPgto, UBanco, UContasReceberCliente, UPrevBoleto2,
+  UContasReceberPgto, UBanco, UContasReceberCliente,
   uCentroCusto, UPrevRecibo2, uPessoac, UTipoCobranca;
 
 {$R *.dfm}
@@ -1136,12 +1134,6 @@ procedure TfContasReceber.ImprimirAcumuladodeClientes1Click(
 begin
   fContasReceberCliente := TfContasReceberCliente.Create(Self);
   fContasReceberCliente.ShowModal;
-end;
-
-procedure TfContasReceber.ImprimirBoleto21Click(Sender: TObject);
-begin
-  fPrevBoleto2 := TfPrevBoleto2.Create(Self);
-  fPrevBoleto2.ShowModal;
 end;
 
 procedure TfContasReceber.Label44Click(Sender: TObject);

@@ -30,7 +30,7 @@ object Dm1: TDm1
       'Trim Char=False')
     VendorLib = 'gds32.dll'
     BeforeConnect = ConexaoBeforeConnect
-    Left = 20
+    Left = 21
     Top = 9
   end
   object Pessoa: TSQLDataSet
@@ -5554,7 +5554,7 @@ object Dm1: TDm1
     end
     object sdsUsuarioSENHA: TStringField
       FieldName = 'SENHA'
-      Size = 8
+      Size = 25
     end
     object sdsUsuarioNIVEL: TIntegerField
       FieldName = 'NIVEL'
@@ -5589,7 +5589,7 @@ object Dm1: TDm1
     end
     object cdsUsuarioSENHA: TStringField
       FieldName = 'SENHA'
-      Size = 8
+      Size = 25
     end
     object cdsUsuarioNIVEL: TIntegerField
       FieldName = 'NIVEL'

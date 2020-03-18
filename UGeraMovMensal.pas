@@ -171,7 +171,7 @@ var
 
 implementation
 
-uses UBcoItau, URecibo, DateUtils;
+uses URecibo, DateUtils;
 
 {$R *.dfm}
 

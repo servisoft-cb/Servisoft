@@ -174,7 +174,7 @@ implementation
 
 uses UDmCons, Math, UPessoa, UCondPgto,
   StdConvs, UTipoCobranca, UProdutoIt, UNatOperacao,
-  UMovAvulsoIt, uPessoac, UGBoleto;
+  UMovAvulsoIt, uPessoac;
 
 {$R *.dfm}
 

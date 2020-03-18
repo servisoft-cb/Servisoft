@@ -19,14 +19,12 @@ type
     Auxiliar1: TMenuItem;
     CondiodePagamento1: TMenuItem;
     Cadastro2: TMenuItem;
-    Estoque1: TMenuItem;
     Pessoa1: TMenuItem;
     Cidade1: TMenuItem;
     Grupo1: TMenuItem;
     Cadastros1: TMenuItem;
     ipodeCobrana1: TMenuItem;
     Aliqotas1: TMenuItem;
-    ModeObra1: TMenuItem;
     Empresa1: TMenuItem;
     AtualizaPreo1: TMenuItem;
     Financeiro1: TMenuItem;
@@ -79,19 +77,15 @@ type
     MovFinanceiro2: TMenuItem;
     clMovAvulso: TAction;
     clDados: TAction;
-    CobranaIta1: TMenuItem;
     clCobItau: TAction;
     ImprimirContasaPagarDetalhado1: TMenuItem;
     ImprimirContasaReceberDetalhado1: TMenuItem;
-    ImprimirBoletoIta1: TMenuItem;
     CentrodeCusto1: TMenuItem;
     ImageList1: TImageList;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
     ToolButton3: TToolButton;
-    ToolButton4: TToolButton;
-    ToolButton5: TToolButton;
     ToolButton6: TToolButton;
     ToolButton7: TToolButton;
     ConsCentroCusto1: TMenuItem;
@@ -123,15 +117,9 @@ type
     procedure CondiodePagamento1Click(Sender: TObject);
     procedure ipodeCobrana1Click(Sender: TObject);
     procedure Aliqotas1Click(Sender: TObject);
-    procedure ModeObra1Click(Sender: TObject);
     procedure Empresa1Click(Sender: TObject);
-    procedure AtualizaPreo1Click(Sender: TObject);
-    procedure OrdemdeCompra1Click(Sender: TObject);
     procedure Cadastro1Click(Sender: TObject);
-    procedure ConsultaRelatrio1Click(Sender: TObject);
     procedure Cadastro4Click(Sender: TObject);
-    procedure Estoque1Click(Sender: TObject);
-    procedure Histrico1Click(Sender: TObject);
     procedure Banco1Click(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
@@ -141,10 +129,8 @@ type
     procedure Sobre1Click(Sender: TObject);
     procedure OrdemdeServio1Click(Sender: TObject);
     procedure Juros1Click(Sender: TObject);
-    procedure FormShow(Sender: TObject);
     procedure ConsultaComisso1Click(Sender: TObject);
     procedure Oramento2Click(Sender: TObject);
-    procedure PlanosdeSade1Click(Sender: TObject);
     procedure Servios1Click(Sender: TObject);
     procedure FromasdePagamento1Click(Sender: TObject);
     procedure ImprimirBoletos1Click(Sender: TObject);
@@ -157,10 +143,8 @@ type
     procedure alBinaExecute(Sender: TObject);
     procedure alUsuarioExecute(Sender: TObject);
     procedure MovFinanceiro2Click(Sender: TObject);
-    procedure CobranaIta1Click(Sender: TObject);
     procedure ImprimirContasaPagarDetalhado1Click(Sender: TObject);
     procedure ImprimirContasaReceberDetalhado1Click(Sender: TObject);
-    procedure ImprimirBoletoIta1Click(Sender: TObject);
     procedure JvSpeedItem3Click(Sender: TObject);
     procedure CentrodeCusto1Click(Sender: TObject);
     procedure ConsCentroCusto1Click(Sender: TObject);
@@ -186,10 +170,10 @@ var
 implementation
 
 uses UPessoaC, UPais, UCidade, UGrupo, USitTributaria, UClasFiscal, UNatOperacao, UProduto, UCondPgto, UTipoCobranca,
-  UUF, UMaoObra, UEmpresa, UBanco, UEstoque, UProdutoHist, UParametros, UContasPagar, UMovFinanceiro, UContasReceber,
-  uSobre, uEmissaoBoleto, UJuros, UUsuario, uLogin, UAutorizacao, UConsComissaoVend, UOrcamentoPrev, uPlanoSaudeC,
-  uServicoC, uFormaPgtoC, uCidadeC, uOrcamentoInstC, uClausulaC, UMovAvulso, UGeraMovMensal, UBcoItau, UContasPagarDet,
-  UContasReceberDet, UPrevBoleto2, uCentroCustoC, UConsCentroCusto, URecibo, uVersaoC, uModulo, uDmCons,
+  UUF, UEmpresa, UBanco, UParametros, UContasPagar, UMovFinanceiro, UContasReceber,
+  uSobre, uEmissaoBoleto, UJuros, UUsuario, uLogin, UAutorizacao, UConsComissaoVend, UOrcamentoPrev, 
+  uServicoC, uFormaPgtoC, uCidadeC, uOrcamentoInstC, uClausulaC, UMovAvulso, UGeraMovMensal, UContasPagarDet,
+  UContasReceberDet, uCentroCustoC, UConsCentroCusto, URecibo, uVersaoC, uModulo, uDmCons,
   USistema;
 
 {$R *.dfm}
@@ -267,26 +251,10 @@ begin
   fUF.ShowModal;
 end;
 
-procedure TfMenu.ModeObra1Click(Sender: TObject);
-begin
-  fMaoObra := TfMaoObra.Create(Self);
-  fMaoObra.ShowModal;
-end;
-
 procedure TfMenu.Empresa1Click(Sender: TObject);
 begin
   fParametros := TfParametros.Create(Self);
   fParametros.ShowModal;
-end;
-
-procedure TfMenu.AtualizaPreo1Click(Sender: TObject);
-begin
-  ShowMessage('Em desenvolvimento!');
-end;
-
-procedure TfMenu.OrdemdeCompra1Click(Sender: TObject);
-begin
-  ShowMessage('Em desenvolvimento!');
 end;
 
 procedure TfMenu.Cadastro1Click(Sender: TObject);
@@ -295,27 +263,10 @@ begin
   fContasReceber.ShowModal;
 end;
 
-procedure TfMenu.ConsultaRelatrio1Click(Sender: TObject);
-begin
-  ShowMessage('Em desenvolvimento!');
-end;
-
 procedure TfMenu.Cadastro4Click(Sender: TObject);
 begin
   fContasPagar := TfContasPagar.Create(Self);
   fContasPagar.ShowModal;
-end;
-
-procedure TfMenu.Estoque1Click(Sender: TObject);
-begin
-  fEstoque := TfEstoque.Create(Self);
-  fEstoque.ShowModal;
-end;
-
-procedure TfMenu.Histrico1Click(Sender: TObject);
-begin
-  fProdutoHist := TfProdutoHist.Create(Self);
-  fProdutoHist.ShowModal;
 end;
 
 procedure TfMenu.Banco1Click(Sender: TObject);
@@ -384,39 +335,6 @@ begin
   fJuros.ShowModal;
 end;
 
-procedure TfMenu.FormShow(Sender: TObject);
-begin
-//  fLogin := TfLogin.Create(self);
-{  if Fdm1.tEmpresaData.AsDateTime <= (Date - 10) then
-    begin
-      Fdm1.tEmpresa.Edit;
-      Fdm1.tEmpresaData.AsDateTime := (Date - 10);
-      Fdm1.tEmpresa.Post;
-      Fdm1.tEmpresa.ApplyUpdates(0);
-    end
-  else
-    begin
-      ShowMessage('A data do sistema foi alterada!'+#13+#13+
-                  'Entre com a senha de liberação '+#13+
-                  ' e a data correta do sistema!');
-      fAutorizacao := TfAutorizacao.Create(Self);
-      fAutorizacao.ShowModal;
-    end;
-//  fLogin.ShowModal;
-  // Fazer aqui os usuarios // boca
-{  if Fdm1.tUsuarioNIVEL.AsInteger > 0 then
-    begin
-      Usu   := Fdm1.tUsuarioID.AsInteger;
-      StatusBar1.Panels[0].Text := 'Bem vindo, ' + Fdm1.tUsuarioNOME.AsString;
-      Cadastro3.Visible := False;
-      if Fdm1.tUsuarioNIVEL.AsInteger < 3 then
-        fMenu.Cadastro3.Visible := True;
-      Fdm1.tUsuario.Filtered := False;
-//      fMenu.ShowModal;
-    end
- }
-end;
-
 procedure TfMenu.ConsultaComisso1Click(Sender: TObject);
 begin
   fConsComissaoVend := TfConsComissaoVend.Create(Self);
@@ -427,13 +345,6 @@ procedure TfMenu.Oramento2Click(Sender: TObject);
 begin
   fOrcamentoPrev := TfOrcamentoPrev.Create(Self);
   fOrcamentoPrev.ShowModal;
-end;
-
-procedure TfMenu.PlanosdeSade1Click(Sender: TObject);
-begin
-  fPlanoSaudeC := TfPlanoSaudeC.Create(Self);
-  fPlanoSaudeC.ShowModal;
-  fPlanoSaudeC.Free;
 end;
 
 procedure TfMenu.Servios1Click(Sender: TObject);
@@ -503,12 +414,6 @@ begin
   fMovAvulso.ShowModal;
 end;
 
-procedure TfMenu.CobranaIta1Click(Sender: TObject);
-begin
-  fBcoItau := TfBcoItau.Create(Self);
-  fBcoItau.ShowModal;
-end;
-
 procedure TfMenu.ImprimirContasaPagarDetalhado1Click(Sender: TObject);
 begin
   fContasPagarDet := TfContasPagarDet.Create(Self);
@@ -519,12 +424,6 @@ procedure TfMenu.ImprimirContasaReceberDetalhado1Click(Sender: TObject);
 begin
   fContasReceberDet := TfContasReceberDet.Create(Self);
   fContasReceberDet.ShowModal;
-end;
-
-procedure TfMenu.ImprimirBoletoIta1Click(Sender: TObject);
-begin
-  fPrevBoleto2 := TfPrevBoleto2.Create(Self);
-  fPrevBoleto2.ShowModal;
 end;
 
 procedure TfMenu.JvSpeedItem3Click(Sender: TObject);

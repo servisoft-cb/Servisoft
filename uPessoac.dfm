@@ -195,6 +195,7 @@ object fPessoaC: TfPessoaC
       Height = 21
       CharCase = ecUpperCase
       TabOrder = 5
+      OnKeyDown = Edit1KeyDown
     end
     object CheckBox1: TCheckBox
       Left = 95
@@ -248,14 +249,14 @@ object fPessoaC: TfPessoaC
       Caption = 'Somente bloqueados'
       TabOrder = 3
     end
-    object BitBtn6: TBitBtn
+    object btnConsultar: TBitBtn
       Left = 225
       Top = 43
       Width = 112
       Height = 21
       Caption = 'Pesquisar'
       TabOrder = 7
-      OnClick = BitBtn6Click
+      OnClick = btnConsultarClick
     end
   end
   object SMDBGrid1: TSMDBGrid

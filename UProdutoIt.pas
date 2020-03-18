@@ -55,7 +55,7 @@ var
 implementation
 
 uses UDmCons, Math, DB, UProduto, USitTributaria,
-  UMaoObra, UBanco;
+  UBanco;
 
 {$R *.dfm}
 

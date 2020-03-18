@@ -1,9 +1,9 @@
 object fMenu: TfMenu
-  Left = 233
-  Top = 105
+  Left = 272
+  Top = 95
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
-  Caption = 'Menu    (1.0.3  10/01/2020)'
+  Caption = 'Menu    (1.0.4  18/03/2020)'
   ClientHeight = 466
   ClientWidth = 801
   Color = clBtnFace
@@ -21,7 +21,6 @@ object fMenu: TfMenu
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnKeyDown = FormKeyDown
-  OnShow = FormShow
   DesignSize = (
     801
     466)
@@ -301,22 +300,8 @@ object fMenu: TfMenu
       ImageIndex = 2
       MenuItem = ImprimirBoletos1
     end
-    object ToolButton4: TToolButton
-      Left = 240
-      Top = 2
-      Caption = 'Cobran'#231'a Ita'#250
-      ImageIndex = 3
-      MenuItem = CobranaIta1
-    end
-    object ToolButton5: TToolButton
-      Left = 320
-      Top = 2
-      Caption = 'Imp. Ita'#250
-      ImageIndex = 4
-      MenuItem = ImprimirBoletoIta1
-    end
     object ToolButton6: TToolButton
-      Left = 400
+      Left = 240
       Top = 2
       AutoSize = True
       Caption = 'C. Receber'
@@ -324,26 +309,26 @@ object fMenu: TfMenu
       MenuItem = Cadastro1
     end
     object ToolButton7: TToolButton
-      Left = 465
+      Left = 305
       Top = 2
       Caption = 'C. Pagar'
       ImageIndex = 6
       MenuItem = Cadastro4
     end
     object ToolButton8: TToolButton
-      Left = 545
+      Left = 385
       Top = 2
       Caption = 'Cons.C.Custo'
       MenuItem = ConsCentroCusto1
     end
     object ToolButton10: TToolButton
-      Left = 625
+      Left = 465
       Top = 2
       Action = clEmissaoRecibo
       ImageIndex = 11
     end
     object ToolButton11: TToolButton
-      Left = 705
+      Left = 545
       Top = 2
       Caption = 'Servi'#231'os Extras'
       MenuItem = MovFinanceiro2
@@ -410,8 +395,8 @@ object fMenu: TfMenu
       end>
   end
   object MainMenu1: TMainMenu
-    Left = 115
-    Top = 162
+    Left = 117
+    Top = 163
     object Cadastros1: TMenuItem
       Caption = 'Cadastros'
       object Empresa2: TMenuItem
@@ -441,7 +426,6 @@ object fMenu: TfMenu
         end
         object PlanosdeSade1: TMenuItem
           Caption = 'Planos de Sa'#250'de'
-          OnClick = PlanosdeSade1Click
         end
         object N2: TMenuItem
           Caption = '-'
@@ -501,7 +485,6 @@ object fMenu: TfMenu
         Caption = 'Produtos'
         object AtualizaPreo1: TMenuItem
           Caption = 'Atualiza Pre'#231'o'
-          OnClick = AtualizaPreo1Click
         end
         object Cadastro2: TMenuItem
           Caption = 'Produto'
@@ -509,18 +492,9 @@ object fMenu: TfMenu
           ImageIndex = 1
           OnClick = Cadastro2Click
         end
-        object Estoque1: TMenuItem
-          Caption = 'Estoque'
-          OnClick = Estoque1Click
-        end
         object Grupo1: TMenuItem
           Caption = 'Grupo'
           OnClick = Grupos1Click
-        end
-        object ModeObra1: TMenuItem
-          Caption = 'M'#227'o-de-Obra'
-          Visible = False
-          OnClick = ModeObra1Click
         end
       end
       object Servios1: TMenuItem
@@ -563,11 +537,6 @@ object fMenu: TfMenu
           Caption = 'Imprimir Contas a Receber Detalhado'
           OnClick = ImprimirContasaReceberDetalhado1Click
         end
-        object ImprimirBoletoIta1: TMenuItem
-          Caption = 'Imp. Ita'#250
-          ImageIndex = 4
-          OnClick = ImprimirBoletoIta1Click
-        end
       end
       object ContasaPagar1: TMenuItem
         Caption = 'Contas a Pagar'
@@ -599,11 +568,6 @@ object fMenu: TfMenu
       object MovFinanceiro2: TMenuItem
         Caption = 'Servi'#231'os Extras'
         OnClick = MovFinanceiro2Click
-      end
-      object CobranaIta1: TMenuItem
-        Caption = 'Cobran'#231'a Ita'#250
-        ImageIndex = 3
-        OnClick = CobranaIta1Click
       end
       object ConsCentroCusto1: TMenuItem
         Caption = 'Cons.C.Custo'

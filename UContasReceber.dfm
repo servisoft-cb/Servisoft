@@ -1,6 +1,6 @@
 object fContasReceber: TfContasReceber
-  Left = 246
-  Top = 179
+  Left = 153
+  Top = 47
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Cadastro/Consulta do Contas a Receber'
@@ -2240,7 +2240,7 @@ object fContasReceber: TfContasReceber
     Top = 208
   end
   object PopupMenu1: TPopupMenu
-    Left = 436
+    Left = 435
     Top = 424
     object ImprimirConsulta1: TMenuItem
       Caption = 'Imprimir Consulta'
@@ -2249,10 +2249,6 @@ object fContasReceber: TfContasReceber
     object ImprimirBoletos1: TMenuItem
       Caption = 'Imprimir Boletos'
       OnClick = ImprimirBoletos1Click
-    end
-    object ImprimirBoleto21: TMenuItem
-      Caption = 'Imprimir Boleto Ita'#250
-      OnClick = ImprimirBoleto21Click
     end
     object ImprimirContasaReceberDetalhado1: TMenuItem
       Caption = 'Imprimir Contas a Receber Detalhado'

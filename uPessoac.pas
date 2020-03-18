@@ -33,7 +33,7 @@ type
     Decoder1: TIdDecoderMIME;
     BitBtn5: TBitBtn;
     cbBloq: TCheckBox;
-    BitBtn6: TBitBtn;
+    btnConsultar: TBitBtn;
     btnUsuario: TNxButton;
     Label2: TLabel;
     btnSistema: TNxButton;
@@ -57,9 +57,11 @@ type
     procedure FormShow(Sender: TObject);
     procedure JvDBLookupCombo1Change(Sender: TObject);
     procedure BitBtn5Click(Sender: TObject);
-    procedure BitBtn6Click(Sender: TObject);
+    procedure btnConsultarClick(Sender: TObject);
     procedure btnUsuarioClick(Sender: TObject);
     procedure btnSistemaClick(Sender: TObject);
+    procedure Edit1KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
     Fdm1: TDm1;
@@ -239,17 +241,20 @@ procedure TfPessoaC.SMDBGrid1GetCellParams(Sender: TObject; Field: TField;
   AFont: TFont; var Background: TColor; Highlight: Boolean);
 begin
   if (Fdm1.tPessoaID.AsInteger > 0) then
-    if Fdm1.tPessoaSTATUS.AsString = '0' then
-      Background  := clRed;
-  if not(Fdm1.tPessoaDT_LIBERADO.IsNull) and (trim(Fdm1.tPessoaDT_LIBERADO.AsString) <> '') then
   begin
-    if (fdm1.tPessoaclDtLiberacao.AsString <> '') and not(Fdm1.tPessoaclDtLiberacao.IsNull) then
-      if ((fdm1.tPessoaCODCENTROCUSTO.AsInteger = 16) or (fdm1.tPessoaCODCENTROCUSTO.AsInteger = 18)) and
-          (fdm1.tPessoaclDtLiberacao.AsDateTime < Date + 7) then
-        AFont.Color := clRed;
+    if Fdm1.tPessoaSTATUS.AsString = '0' then
+      Background  := clRed
+    else
+    if not(Fdm1.tPessoaDT_LIBERADO.IsNull) and (trim(Fdm1.tPessoaDT_LIBERADO.AsString) <> '') then
+    begin
+      if (fdm1.tPessoaclDtLiberacao.AsString <> '') and not(Fdm1.tPessoaclDtLiberacao.IsNull) then
+        if ((fdm1.tPessoaCODCENTROCUSTO.AsInteger = 16) or (fdm1.tPessoaCODCENTROCUSTO.AsInteger = 18)) and
+            (fdm1.tPessoaclDtLiberacao.AsDateTime < Date + 7) then
+          AFont.Color := clRed;
+    end;
+    if Fdm1.tPessoaEMPRESA_PRINCIPAL.AsString = '1' then
+      AFont.Style := [fsBold];
   end;
-  if Fdm1.tPessoaEMPRESA_PRINCIPAL.AsString = '1' then
-    AFont.Style := [fsBold];
 end;
 
 procedure TfPessoaC.SMDBGrid1TitleClick(Column: TColumn);
@@ -321,7 +326,7 @@ begin
   prc_Ler_Vcto_Site(fdm1);
 end;
 
-procedure TfPessoaC.BitBtn6Click(Sender: TObject);
+procedure TfPessoaC.btnConsultarClick(Sender: TObject);
 var
   vData: String;
 begin
@@ -357,6 +362,13 @@ begin
     fPessoa_Sistema.ShowModal;
     FreeAndNil(fPessoa_Sistema);
   end;
+end;
+
+procedure TfPessoaC.Edit1KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if Key = VK_RETURN then
+    btnConsultarClick(Sender);
 end;
 
 end.
