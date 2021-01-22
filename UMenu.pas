@@ -94,17 +94,16 @@ type
     ToolButton10: TToolButton;
     clEmissaoRecibo: TAction;
     ToolButton11: TToolButton;
-    Image2: TImage;
     Image3: TImage;
     Programas1: TMenuItem;
     Verses1: TMenuItem;
     N1: TMenuItem;
     Logoff1: TMenuItem;
     Mdulos1: TMenuItem;
-    SMDBGrid1: TSMDBGrid;
     N3: TMenuItem;
     Sistema1: TMenuItem;
     Usurio2: TMenuItem;
+    ClientesporSistema1: TMenuItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Pessoas1Click(Sender: TObject);
     procedure Pas1Click(Sender: TObject);
@@ -157,6 +156,7 @@ type
     procedure UserControl1AfterLogin(Sender: TObject);
     procedure Sistema1Click(Sender: TObject);
     procedure Usurio2Click(Sender: TObject);
+    procedure ClientesporSistema1Click(Sender: TObject);
   private
     { Private declarations }
     Fdm1: TDm1;
@@ -174,7 +174,7 @@ uses UPessoaC, UPais, UCidade, UGrupo, USitTributaria, UClasFiscal, UNatOperacao
   uSobre, uEmissaoBoleto, UJuros, UUsuario, uLogin, UAutorizacao, UConsComissaoVend, UOrcamentoPrev, 
   uServicoC, uFormaPgtoC, uCidadeC, uOrcamentoInstC, uClausulaC, UMovAvulso, UGeraMovMensal, UContasPagarDet,
   UContasReceberDet, uCentroCustoC, UConsCentroCusto, URecibo, uVersaoC, uModulo, uDmCons,
-  USistema;
+  USistema, uClientesSistemaC;
 
 {$R *.dfm}
 
@@ -497,6 +497,12 @@ begin
   fUsuario := tfUsuario.Create(Self);
   fUsuario.ShowModal;
   FreeAndNil(fUsuario);
+end;
+
+procedure TfMenu.ClientesporSistema1Click(Sender: TObject);
+begin
+  fClientesSistemaC := TfClientesSistemaC.Create(Self);
+  fClientesSistemaC.ShowModal;    
 end;
 
 initialization

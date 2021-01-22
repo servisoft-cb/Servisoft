@@ -13,9 +13,7 @@ object Dm1: TDm1
     LoginPrompt = False
     Params.Strings = (
       'DriverName=Interbase'
-      
-        'Database=localhost:D:\Fontes\$Servisoft\Bases\Servisoft\Servisof' +
-        't.FDB'
+      'Database=localhost:C:\Delphi7\Servisoft\EXE\Servisoft.fdb'
       'RoleName=RoleName'
       'User_Name=sysdba'
       'Password=masterkey'

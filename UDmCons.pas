@@ -543,12 +543,23 @@ type
     cdsPessoaHistNOME: TStringField;
     cdsPessoaHistUSUARIO_RESP: TStringField;
     cdsPessoaHistCONCLUIDO: TStringField;
+    sqsSistemaCliente: TSQLQuery;
+    spsSistemaCliente: TDataSetProvider;
+    cdsSistemaCliente: TClientDataSet;
+    dsSistemaCliente: TDataSource;
+    cdsSistemaClienteSISTEMA: TStringField;
+    cdsSistemaClienteCLIENTE: TStringField;
+    cdsSistemaClienteDOCUMENTO: TStringField;
+    cdsSistemaClienteVENDEDOR: TStringField;
+    cdsSistemaClienteVEND_COB: TStringField;
     procedure qCReceberParcCalcFields(DataSet: TDataSet);
     procedure qCPagarParcCalcFields(DataSet: TDataSet);
+    procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+    ctPessoaSistema: String;
   end;
 
 var
@@ -585,6 +596,11 @@ begin
       else
         DmCons.qCPagarParcclDiasAtraso.AsFloat := 0;
     end;
+end;
+
+procedure TDmCons.DataModuleCreate(Sender: TObject);
+begin
+  ctPessoaSistema := sqsSistemaCliente.SQL.Text;
 end;
 
 end.

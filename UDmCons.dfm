@@ -1,5 +1,6 @@
 object DmCons: TDmCons
   OldCreateOrder = False
+  OnCreate = DataModuleCreate
   Left = 281
   Top = 108
   Height = 420
@@ -2560,5 +2561,60 @@ object DmCons: TDmCons
     DataSet = cdsPessoaHist
     Left = 64
     Top = 224
+  end
+  object sqsSistemaCliente: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      
+        'select s.nome sistema, p.nome cliente, p.documento, v.nome vende' +
+        'dor, vc.nome vend_cob'
+      'from pessoa p'
+      'left join pessoa_sistema ps on (ps.id_pessoa = p.id)'
+      'left join sistema s on (ps.id_sistema = s.id)'
+      'left join pessoa v on (p.codvendedor = v.id)'
+      'left join pessoa vc on (p.codvendedor_cob = vc.id)'
+      ''
+      'where p.cliente = '#39'1'#39' and p.status = '#39'1'#39)
+    SQLConnection = Dm1.Conexao
+    Left = 20
+    Top = 279
+  end
+  object spsSistemaCliente: TDataSetProvider
+    DataSet = sqsSistemaCliente
+    Left = 36
+    Top = 279
+  end
+  object cdsSistemaCliente: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'spsSistemaCliente'
+    Left = 52
+    Top = 279
+    object cdsSistemaClienteSISTEMA: TStringField
+      FieldName = 'SISTEMA'
+      Size = 30
+    end
+    object cdsSistemaClienteCLIENTE: TStringField
+      FieldName = 'CLIENTE'
+      Size = 40
+    end
+    object cdsSistemaClienteDOCUMENTO: TStringField
+      FieldName = 'DOCUMENTO'
+      Size = 18
+    end
+    object cdsSistemaClienteVENDEDOR: TStringField
+      FieldName = 'VENDEDOR'
+      Size = 40
+    end
+    object cdsSistemaClienteVEND_COB: TStringField
+      FieldName = 'VEND_COB'
+      Size = 40
+    end
+  end
+  object dsSistemaCliente: TDataSource
+    DataSet = cdsSistemaCliente
+    Left = 68
+    Top = 279
   end
 end
