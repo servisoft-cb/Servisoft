@@ -20,8 +20,8 @@ object fPessoa: TfPessoa
   TextHeight = 13
   object Panel1: TPanel
     Left = 0
-    Top = 486
-    Width = 635
+    Top = 494
+    Width = 643
     Height = 31
     Align = alBottom
     TabOrder = 1
@@ -47,9 +47,9 @@ object fPessoa: TfPessoa
   object PageControl1: TPageControl
     Left = 0
     Top = 0
-    Width = 635
-    Height = 486
-    ActivePage = TabSheet1
+    Width = 643
+    Height = 494
+    ActivePage = TabSheet6
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -505,8 +505,8 @@ object fPessoa: TfPessoa
       end
       object GroupBox1: TGroupBox
         Left = 0
-        Top = 401
-        Width = 627
+        Top = 409
+        Width = 635
         Height = 57
         Align = alBottom
         Caption = 'Pap'#233'is'
@@ -751,8 +751,8 @@ object fPessoa: TfPessoa
       object Panel3: TPanel
         Left = 0
         Top = 0
-        Width = 627
-        Height = 458
+        Width = 635
+        Height = 466
         Align = alClient
         BevelOuter = bvLowered
         TabOrder = 0
@@ -946,7 +946,7 @@ object fPessoa: TfPessoa
         object GroupBox2: TGroupBox
           Left = 1
           Top = 1
-          Width = 625
+          Width = 633
           Height = 122
           Align = alTop
           Caption = 'Endere'#231'o de cobran'#231'a'
@@ -1343,8 +1343,8 @@ object fPessoa: TfPessoa
       object PageControl2: TPageControl
         Left = 0
         Top = 0
-        Width = 627
-        Height = 458
+        Width = 635
+        Height = 466
         ActivePage = TabSheet10
         Align = alClient
         TabOrder = 0

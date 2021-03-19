@@ -3,7 +3,8 @@ unit uDmRemoto;
 interface
 
 uses
-  SysUtils, Classes, DBXpress, FMTBcd, DB, DBClient, Provider, SqlExpr, IniFiles, Forms;
+  SysUtils, Classes, DBXpress, FMTBcd, DB, DBClient, Provider, SqlExpr, IniFiles, Forms,
+  IdBaseComponent, IdCoder, IdCoder3to4, IdCoderMIME;
 
 type
   TdmRemoto = class(TDataModule)
@@ -213,10 +214,13 @@ type
     cdsSistemaID: TIntegerField;
     cdsSistemaNOME: TStringField;
     cdsSistemaOBS: TStringField;
+    Decoder64: TIdDecoderMIME;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
     procedure ExecutaConsulta(SQL: string);
+    function Fnc_ArquivoConfiguracao: string;
+    
   public
     { Public declarations }
     ctPessoa: String;
@@ -239,6 +243,14 @@ var
 implementation
 
 {$R *.dfm}
+
+const
+  cArquivoConfiguracao = 'dbxconnections.ini';
+
+function TdmRemoto.Fnc_ArquivoConfiguracao: string;
+begin
+  Result := ExtractFilePath(Application.ExeName) + cArquivoConfiguracao;
+end;
 
 procedure TdmRemoto.ExecutaConsulta(SQL: string);
 begin
@@ -267,14 +279,17 @@ procedure TdmRemoto.DataModuleCreate(Sender: TObject);
 var
   Config: TIniFile;
 begin
-{  scConexao.Connected := False;
-  Config := TIniFile.Create(ExtractFilePath(Application.ExeName + 'dbxconnections.ini'));
+  scConexao.Connected := False;
+
+  Config := TIniFile.Create(Fnc_ArquivoConfiguracao);
+  scConexao.LoadParamsFromIniFile(Fnc_ArquivoConfiguracao);
+  scConexao.Params.Values['DRIVERNAME'] := 'INTERBASE';
+  scConexao.Params.Values['SQLDIALECT'] := '3';
   scConexao.Params.Values['DATABASE']   := Config.ReadString('ServisoftRemoto', 'DATABASE', '');
   scConexao.Params.Values['USER_NAME']  := Config.ReadString('ServisoftRemoto', 'USERNAME', '');
+  //scConexao.Params.Values['PASSWORD']   := Decoder64.DecodeString(Config.ReadString('ServisoftRemoto', 'PASSWORD', ''));
   scConexao.Params.Values['PASSWORD']   := Config.ReadString('ServisoftRemoto', 'PASSWORD', '');
   scConexao.Connected := True;
-}
-
   ctPessoa := sdsPessoa.CommandText;
 end;
 

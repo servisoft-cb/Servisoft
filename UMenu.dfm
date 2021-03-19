@@ -3,7 +3,7 @@ object fMenu: TfMenu
   Top = 95
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
-  Caption = 'Menu    (1.0.4  18/03/2020)'
+  Caption = 'Menu    (1.0.5 18/03/2021)'
   ClientHeight = 466
   ClientWidth = 801
   Color = clBlack

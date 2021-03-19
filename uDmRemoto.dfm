@@ -13,7 +13,7 @@ object dmRemoto: TdmRemoto
     LoginPrompt = False
     Params.Strings = (
       'DriverName=Interbase'
-      'Database=firebird09-farm51.kinghost.net:/firebird/servisoft.gdb'
+      'database=firebird.servisoft.kinghost.net:/firebird/servisoft.gdb'
       'RoleName=RoleName'
       'User_Name=servisoft'
       'Password=35977456'
@@ -936,5 +936,10 @@ object dmRemoto: TdmRemoto
     UpdateMode = upWhereKeyOnly
     Left = 461
     Top = 107
+  end
+  object Decoder64: TIdDecoderMIME
+    FillChar = '='
+    Left = 315
+    Top = 27
   end
 end
